@@ -1,0 +1,93 @@
+input:hover.submit-button{
+  background-color: white;
+  color: #D43D2A !important;
+}
+
+.-header {
+  background-color: #f0e3d2;
+}
+.hidden{
+  display: none;
+}
+.ReactTable .-pagination .-btn {
+  background-color: #3771ce;
+  color: white;
+}
+
+.ReactTable.-striped .rt-tr.-odd {
+  background-color: #e2f1f8;
+}
+
+.ReactTable.-striped .rt-tr.-even {
+  background-color: white;
+}
+
+.form-control {
+    height: calc(3rem + 2px);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: black;
+    border-color: black;
+}
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+
+.closeModal {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
+
+
+.pagination > li {
+  display: inline-block;
+  padding-left: 0;
+}
+.pagination > li {
+  list-style: none;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: #2c689c;
+  background-color: #fff;
+  margin-left: -1px;
+}
+.pagination>li.active>a {
+  color: #fff;
+  background-color: #00008B;
+  border-color: #1e7e34;
+}
+
+/* Style the active class (and buttons on mouse-over) */
+.pagination > li > a:hover {
+  background-color:  #00008B;
+  color: white;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+    padding: 0px;
+  display: none!important;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  margin-right: 0;
+  padding: 0px!important;
+  display: none!important;
+}

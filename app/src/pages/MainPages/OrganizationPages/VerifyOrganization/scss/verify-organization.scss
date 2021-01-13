@@ -1,0 +1,31 @@
+input:hover.submit-button{
+  background-color: white;
+  color: #D43D2A !important;
+}
+
+.-header {
+  background-color: #f0e3d2;
+}
+.hidden{
+  display: none;
+}
+.ReactTable .-pagination .-btn {
+  background-color: #3771ce;
+  color: white;
+}
+
+.ReactTable.-striped .rt-tr.-odd {
+  background-color: #e2f1f8;
+}
+
+.ReactTable.-striped .rt-tr.-even {
+  background-color: white;
+}
+
+.form-control {
+    height: calc(3rem + 2px);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: black;
+    border-color: black;
+}

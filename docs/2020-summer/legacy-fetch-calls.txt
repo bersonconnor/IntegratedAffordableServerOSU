@@ -1,0 +1,32 @@
+# From the root directory run the following command to create this list:
+# grep -rnwl --exclude-dir="node_modules" --exclude-dir="build" --include="*.js" --include="*.ts" --include="*.tsx" --include="*.jsx" -e 'fetch'
+
+app/src/components/Modal/AddBankAccountButton.js
+app/src/components/Modal/CheckoutForm.js
+app/src/components/Modal/DepositButton.js
+app/src/components/Modal/DonateButton.js
+app/src/components/Modal/SubmitModal.js
+app/src/components/Modal/WithdrawButton.js
+app/src/pages/AuthPages/AddSecondaryEmailVerify/index.js
+app/src/pages/AuthPages/AdminRegister/index.tsx
+app/src/pages/AuthPages/ChangePrimaryEmailVerify/index.js
+app/src/pages/AuthPages/ForgotCredentials/index.js
+app/src/pages/AuthPages/Login/index.tsx
+app/src/pages/AuthPages/Register/index.tsx
+app/src/pages/MainPages/ApplyPages/Selection/index.js
+app/src/pages/MainPages/CreateHUG/index.js
+app/src/pages/MainPages/Dashboard/index.js
+app/src/pages/MainPages/HUGBrowser/index.js
+app/src/pages/MainPages/HUGPages/HUGPagesRoutingContainer/HugCreation.tsx
+app/src/pages/MainPages/HUGPages/HUGPagesRoutingContainer/HUGDetails.js
+app/src/pages/MainPages/HUGPages/HUGPagesRoutingContainer/HugSearch.js
+app/src/pages/MainPages/HUGPages/HUGPagesRoutingContainer/manage.js
+app/src/pages/MainPages/MainPagesRoutingContainer/MainHeader.js
+app/src/pages/MainPages/OrganizationPages/AddOrganization/index.tsx
+app/src/pages/MainPages/OrganizationPages/JoinGroup/index.js
+app/src/pages/MainPages/OrganizationPages/VerifyOrganization/index.js
+app/src/pages/MainPages/Settings/index.js
+app/src/pages/MainPages/ZapierInfo/index.tsx
+app/src/registerServiceWorker.js
+server/dist/services/StripeService.js
+server/src/services/StripeService.ts

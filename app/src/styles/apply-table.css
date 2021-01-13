@@ -1,0 +1,14 @@
+/*Table Header Color*/
+.apply-table-thead {
+  background-color: #f0e3d2;
+  text-align: left;
+}
+
+/*Table Striped Color*/
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #e2f1f8;
+}
+
+.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
+   background-color: white;
+}

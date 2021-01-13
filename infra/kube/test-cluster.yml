@@ -1,0 +1,17 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: affordable-test
+  region: us-east-1
+
+nodeGroups:
+  - name: kube-system
+    instanceType: c5.large
+    desiredCapacity: 1
+
+fargateProfiles:
+  - name: fp-default
+    selectors:
+      - namespace: default
+      - namespace: affordable

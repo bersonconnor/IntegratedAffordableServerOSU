@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-{{ .Values.env }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}-{{ .Values.env }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}-{{ .Values.env }}
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}-{{ .Values.env }}
+        image: 330259559134.dkr.ecr.us-east-1.amazonaws.com/affordhealth/app:{{ .Values.tag }}
+        #command: [ "sleep", "infinity" ]
+        command: ["node", "./server.js"]
+        resources:
+          limits:
+            memory: {{ .Values.limits.memory }}
+            cpu: {{ .Values.limits.cpu }}
+        ports:
+        - containerPort: {{ .Values.port }}
+        volumeMounts:
+        - name: config-volume
+          mountPath: /affordable/app/.env
+          subPath: .env
+        env:
+        - name: REACT_APP_STRIPE_PUBLISHABLE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: affordable-stripe-{{ .Values.env }}
+              key: key
+              optional: {{ .Values.secretsOptional }}
+        - name: REACT_APP_PLAID_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: affordable-plaid-{{ .Values.env }}
+              key: id
+              optional: {{ .Values.secretsOptional }}
+        - name: REACT_APP_PLAID_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: affordable-plaid-{{ .Values.env }}
+              key: secret
+              optional: {{ .Values.secretsOptional }}
+        - name: REACT_APP_PLAID_PUBLIC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: affordable-plaid-{{ .Values.env }}
+              key: key
+              optional: {{ .Values.secretsOptional }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.probes.path }}
+            port: {{ .Values.port }}
+          initialDelaySeconds: {{ .Values.initialDelaySeconds }}
+          timeoutSeconds: {{ .Values.timeoutSeconds }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.probes.path }}
+            port: {{ .Values.port }}
+          initialDelaySeconds: {{ .Values.probes.initialDelaySeconds }}
+          timeoutSeconds: {{ .Values.probes.timeoutSeconds }}
+          periodSeconds: {{ .Values.probes.periodSeconds }}
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ .Chart.Name }}-{{ .Values.env }}
+

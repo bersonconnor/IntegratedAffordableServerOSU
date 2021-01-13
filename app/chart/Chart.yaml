@@ -1,0 +1,8 @@
+apiVersion: v1
+name: affordable-app
+version: 0.0.1
+home: https://affordhealth.org
+maintainers:
+  - name: Andy Zawada
+    email: atzawada@gmail.com
+    url: https://github.com/atzawada

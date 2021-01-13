@@ -1,0 +1,121 @@
+/* previous and next buttons*/
+a.prev_next{
+  text-decoration: none !important;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  margin: 4px 2px;
+}
+
+a:hover.prev_next{
+  background-color: white;
+  color: #D43D2A !important;
+}
+
+.prev_next {
+  background-color: #D43D2A;
+  color: white;
+}
+
+input.user-button{
+  text-decoration: none !important;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  margin: 4px 20px;
+}
+/*selection page input submit button*/
+input.submit-button {
+  text-decoration: none !important;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  margin: 4px 2px;
+}
+
+input:hover.submit-button{
+  background-color: white;
+  color: #3771ce !important;
+}
+
+/*finalize page submit button*/
+button.submit-button{
+  text-decoration: none !important;
+  text-align: center;
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  margin: 4px 2px;
+  border: none;
+  border-radius: 0.5rem !important;
+  /* text-decoration: none !important;
+  text-align: center;
+  display: inline-block;
+  border-radius: 12px !important;
+  border: none;
+  padding: 10px;
+  padding: 8px 16px;
+  margin: 4px 2px; */
+}
+
+button:hover.submit-button{
+  background-color: white !important;
+  color: #3771ce !important;
+}
+
+.submit-button {
+  background-color: #3771ce !important;
+  color: white !important;
+}
+
+/*supplemental page save button*/
+a.save-button {
+  text-decoration: none !important;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  margin: 4px 2px;
+}
+
+a:hover.save-button {
+  background-color: white !important;
+  color: #3771ce !important;
+}
+
+.save-button {
+  background-color: #3771ce !important;
+  color: white !important;
+}
+
+/*cancel button finalize popup*/
+button.cancel{
+  text-decoration: none !important;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  padding: 10px;
+  text-align: center;
+  margin: 4px 2px;
+}
+
+button:hover.cancel{
+  background-color: white;
+  color: #D43D2A !important;
+}
+
+.cancel {
+  background-color: #D43D2A;
+  color: white;
+}

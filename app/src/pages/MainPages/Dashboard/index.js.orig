@@ -1,0 +1,1325 @@
+import "./scss/dashboard.scss";
+import React, { Component } from "react";
+import {Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, CardColumns, ListGroup, ButtonGroup} from "react-bootstrap"
+import {Container, Row, Col, Form} from "react-bootstrap"
+import ReactTable from "react-table"; /*INSERT */
+import { LinkContainer } from "react-router-bootstrap";/*INSERT */
+import CollapseWithHeader from "../../../components/CollapseWithHeader";
+
+import Popup from "reactjs-popup";
+import swal from "sweetalert";
+
+import "../Settings/scss/settings.scss";
+import "./scss/dashboard.scss";
+import "../../../styles/buttons.css";/*INSERT */
+import DepositButton from "../../../components/Modal/DepositButton";
+import WithdrawButton from "../../../components/Modal/WithdrawButton";
+
+import {UserType} from "affordable-shared-models";
+
+
+class ViewApplicants extends Component{
+    constructor(props){
+        super(props);
+        this.state  ={
+            index: -1
+        }
+
+        this.rejectApplicant = this.rejectApplicant.bind(this);
+        this.awardHUG = this.awardHUG.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+
+
+    }
+
+    closeModal(){
+        this.props.closeModal();
+    }
+
+    async rejectApplicant(){
+
+        if(this.props.selected_recipient != ""){
+            console.log("award");
+            swal({title: this.props.selected_recipient + " is rejected",
+            buttons: {
+                close: {
+                    text: "Close",
+                    value: "Close",
+                },
+            },
+            closeOnClickOutside: false,
+            icon: "success"})
+              .then(async (value) =>{
+
+                switch(value){
+
+                    case "Close":
+                        console.log(this.props.selected_hugID);
+                        console.log(this.props.selected_recipient);
+                        await this.props.rejectApplicant(this.props.selected_hugID, this.props.selected_recipient);
+                        this.props.removeApplicant(this.props.selected_recipient);
+                    default:
+                        break;
+                }
+              });
+        }
+        else{
+            console.log("don't award");
+            swal({title: "Please select an applicant.",
+            buttons: {
+                close: {
+                    text: "Close",
+                    value: "Close",
+                },
+            },
+            icon: "error"});
+        }
+    }
+
+    async awardHUG(){
+
+        if(this.props.selected_recipient != ""){
+            console.log("award");
+            swal({title: "Thank you for awarding the HUG to " + this.props.selected_recipient,
+            buttons: {
+                close: {
+                    text: "Close",
+                    value: "Close",
+                },
+            },
+            closeOnClickOutside: false,
+            icon: "success"})
+              .then(async (value) =>{
+
+                switch(value){
+
+                    case "Close":
+                        console.log(this.props.selected_hugID);
+                        console.log(this.props.selected_recipient);
+                        await this.props.awardHUG(this.props.selected_hugID, this.props.selected_recipient);
+                        this.props.closeModal();
+
+                    default:
+                        break;
+                }
+              });
+        }
+        else{
+            console.log("don't award");
+            swal({title: "Please select an applicant to grant HUG to.",
+            buttons: {
+                close: {
+                    text: "Close",
+                    value: "Close",
+                },
+            },
+            icon: "error"});
+        }
+    }
+
+
+
+    render(){
+        return (
+        <Popup
+            open={this.props.open}
+            closeOnDocumentClick = {true}
+            onClose={this.closeModal}>
+
+              <a className="close" onClick={this.closeModal}>
+                  &times;
+              </a>
+              <div className="header"> <p></p> </div>
+              <div className="content">
+
+
+
+              <Row style={{width: "100%", margin: "0px"}}>
+                <Col style={{padding: "5px"}}>
+                    <h4>Applicants for {this.props.selected_hug}</h4>
+
+                {/* Donor's table of owned HUGs and their applicants
+                (probably in a list pop-up accessed with a button in the applicants
+                column) */ }
+                <ReactTable
+                    data={this.props.applicants}
+                    columns={[
+                        {
+                            headerClassName: "apply-table-thead",
+                            accessor: "recipientID",
+                            style: { whiteSpace: "unset" }
+                        }
+
+                    ]}
+                    getTrGroupProps={(state, rowInfo) => {
+                        if (rowInfo && rowInfo.row) {
+                            return {
+                            onClick: (e) => {
+                                // Unselect
+                                if(this.state.display_remove && rowInfo.index === this.state.index){
+                                this.setState({
+                                    display_remove:false,
+                                    index:-1
+                                });
+                                this.props.handleSelectedRecipient("");
+                                } else if(this.state.display_remove && rowInfo.index !== this.state.index){
+                                    // Clicked on new row
+                                    this.setState({
+                                    index:rowInfo.index
+                                    });
+                                    this.props.handleSelectedRecipient(rowInfo.row.recipientID);
+                                } else {
+                                this.setState({
+                                    // First time click
+                                    display_remove:true,
+                                    index:rowInfo.index
+                                });
+                                this.props.handleSelectedRecipient(rowInfo.row.recipientID);
+                                }
+
+                            },
+                            style:{
+                                background: rowInfo.index === this.state.index?"#f0e3d2c":'',
+                                color:rowInfo.index === this.state.index?"#3771ce":'',
+                                border: rowInfo.index === this.state.index? "2px solid #3771ce":'',
+                            }
+                            }
+                        }
+                        }
+                    }
+                    defaultPageSize={5}
+                    showPageSizeOptions={false}
+                />
+                </Col>
+                </Row>
+                <Row style={{width: "100%", margin: "0px"}}>
+                    <Col style={{padding: "5px"}}>
+                        <Button block size="lg" onClick={this.rejectApplicant} >Reject</Button>
+                    </Col>
+                    <Col style={{padding: "5px"}}>
+                        <Button block size="lg" onClick={this.awardHUG}>Accept</Button>
+                    </Col>
+                </Row>
+                <Row style={{width: "100%", margin: "0px"}}>
+                </Row>
+
+              </div>
+              <div className="actions">
+                  <div className="floats-right">
+                  {/*Cancel the transaction */}
+                  <button
+                    className="submit-button"
+                    onClick={this.closeModal}>
+                      Cancel
+                  </button>
+                  </div>
+
+                  { /* Submit the transaction*/ }
+                  {/*NEED TO CHECK WHAT OTHER PEOPLE ARE USING TO DETERMINE USER */ }
+              </div>
+          </Popup>
+        );
+    }
+
+}
+
+
+
+
+class Dashboard extends Component {
+
+    // -----------------------------------------------------------------------------------------------//
+    // Below here are constructors and other essential code blocks //
+    // -----------------------------------------------------------------------------------------------//
+
+    constructor(props) {
+        super(props);
+
+        console.log(props);
+
+        this.state = {
+            userId: this.props.userId,
+            userName: this.props.userName,
+            userType: this.props.userType,
+            firstName: this.props.firstName,
+            index: -1,
+            selected_hug: "",
+            selected_hugID: -1,
+            display_remove: false,
+            open: false,
+            selected_recipient:"",
+<<<<<<< HEAD
+=======
+            buttonMessage: "",
+            beenVerified: sessionStorage.getItem("Verified") === null,
+            showVerified: sessionStorage.getItem("Verified") === null || sessionStorage.getItem("Verified") === "inProcess"
+
+>>>>>>> 46587f9016112e0b8f32261f86a236637270bddd
+            //firstName: "Elan"
+            hugs: []
+        };
+        this.getBalance();
+
+
+        this.closeModal = this.closeModal.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.handleSelectedRecipient = this.handleSelectedRecipient.bind(this);
+        this.removeApplicant = this.removeApplicant.bind(this);
+    }
+
+    removeApplicant(val){
+
+        let newApplicants = this.state.applicants.filter(applicant => applicant.recipientID !== val);
+        this.setState({
+            applicants: newApplicants
+        });
+    }
+
+    handleSelectedRecipient(val){
+        this.setState({
+            selected_recipient: val
+        });
+    }
+
+    closeModal(){
+        this.setState({open:false});
+    }
+
+    async openModal(){
+        if(this.state.selected_hug != ""){
+            let v = await this.getHUGPendingApplicants(this.state.selected_hugID);
+
+            console.log(v);
+            this.setState({
+                open:true,
+                applicants: v,
+                selected_recipient: ""
+            });
+        }
+        else{
+            swal("Please select a HUG", "", "error");
+            this.getDashboardHUGs();
+        }
+    }
+
+
+    // Do this stuff after page loads
+    async componentDidMount() {
+        console.log(`Loaded dashboard with user information:
+        id: ${this.state.userId}
+        user: ${this.state.userName}
+        type: ${this.state.userType}
+        name: ${this.state.firstName}`);
+
+        // Do these immediately upon load
+        this.getBalance() // Update balance every
+        this.getDashboardHUGs() // Get donor/recipient HUGs
+
+        if (this.state.userType === UserType.RECIPIENT) {
+            this.stripeOnboardingStatus();
+        }
+
+        // And then repeat on a polling interval (in milliseconds)
+        this.checkBalance=setInterval(() => this.getBalance(), 1000);
+        this.getDashboardHUGsInterval = setInterval(() => this.getDashboardHUGs(), 2000);
+    }
+
+    componentWillUnmount() {
+        // Stop repeating Dashboard tasks
+        clearInterval(this.checkBalance);
+        clearInterval(this.getDashboardHUGsInterval);
+  }
+
+    // Get all the hugs to populate the dashboard. Different functions are called depending on usertype
+    async getDashboardHUGs() {
+        let hugs = [];
+
+        if (this.state.userType === UserType.DONOR) {
+            let returnObj0 = await this.getOwnedHUGs(this.state.userName);
+
+            if (returnObj0 != null && returnObj0.length > 0) {
+                hugs = this.extractPendingHUGs(Object.values(returnObj0)[1]);
+            }
+
+            // console.log("Donor user's unawarded HUGs:");
+            // console.log(hugs);
+            this.setState({
+                hugs: hugs
+            });
+        }
+        else {
+            let returnObj0 = await this.getRecipientAppliedHUGs(this.state.userName);
+
+            if (returnObj0 != null && returnObj0.length > 0) {
+                hugs = this.extractPendingHUGs(Object.values(returnObj0)[1]);
+            }
+
+            // console.log("Recipient user's applied HUGs with \"Pending\" status:");
+            // console.log(hugs);
+            this.setState({
+                hugs: hugs
+            });
+        }
+    }
+
+    stripeOnboardingStatus = async() => {
+        console.log(this.state.userName, this.state.userType);
+        const data = new FormData();
+        data.append("username", this.state.userName);
+        const usertype = null;
+
+        // gets the usertype
+        await fetch(process.env.REACT_APP_AF_BACKEND_URL +"/profile/get-user-type", {
+            method: "POST",
+            body: data
+            })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                alert("Unable to get user type");
+            }
+         })
+        .then(resData => {
+            usertype = resData.usertype;
+        });
+
+        data.append("usertype", usertype);
+
+        var accountID = null;
+        var requirementsDue = false;
+        // first attempts to get the Stripe Connected Account ID of the current user
+        try {
+            const response = await fetch(process.env.REACT_APP_AF_BACKEND_URL +"/stripe/getCustomAccountID", {
+                method: "POST",
+                body: data
+            });
+            if(!response.ok) {
+                console.error(response.statusText);
+                throw Error(response.statusText);
+            }
+
+            const json = await response.json();
+
+            // if no Connect Account was found, then send an alert
+            // Though, this is not possible since both recipients and donors are given one
+            if(json.success === "No Account Found") {
+                alert("Error: No Withdraw Account Found!");
+            } else {
+                accountID = json.id;
+                console.log("Account Found: " + accountID);
+
+                data.append("accountID", accountID);
+            }
+
+        } catch(error) {
+            console.error(error);
+        }
+
+        // checks if account needs to be verified
+        try {
+            const response = await fetch(process.env.REACT_APP_AF_BACKEND_URL +"/stripe/checkConnectRequirements", {
+                method: "POST",
+                body: data
+            });
+            if(!response.ok) {
+                console.error(response.statusText);
+                throw Error(response.statusText);
+            }
+
+            const json = await response.json();
+
+            if(json.success === "STRIPE ERROR") {
+                console.error(json.message);
+            } else {
+                if(json.status === "None") {
+                    requirementsDue = false;
+                } 
+                else {
+                    const requirements = json.requirements;
+                    
+                    requirementsDue = true;
+                }
+                console.log("Account Found: " + accountID);
+                accountID = json.id;
+            }
+
+        } catch(error) {
+            console.error(error);
+        }
+
+        if(requirementsDue){
+            // First check of status
+            if(sessionStorage.getItem("Verified") === null){
+                this.setState({buttonMessage: "Get Verified"});
+            } else if (sessionStorage.getItem("Verified") === "inProcess"){
+                this.setState({buttonMessage: "We need more information"});
+            } else {
+                this.setState({ showVerified: false});
+            }
+        } else {
+            this.setState({ showVerified: false});
+        }
+    }
+
+    stripeOnboarding = async () => {
+        console.log(this.state.userName, this.state.userType);
+        const data = new FormData();
+        data.append("username", this.state.userName);
+        const usertype = null;
+
+        // gets the usertype
+        await fetch(process.env.REACT_APP_AF_BACKEND_URL +"/profile/get-user-type", {
+            method: "POST",
+            body: data
+            })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                alert("Unable to get user type");
+            }
+         })
+        .then(resData => {
+            usertype = resData.usertype;
+        });
+
+        data.append("usertype", usertype);
+
+        var accountID = null;
+        var requirementsDue = false;
+        // first attempts to get the Stripe Connected Account ID of the current user
+        try {
+            const response = await fetch(process.env.REACT_APP_AF_BACKEND_URL +"/stripe/getCustomAccountID", {
+                method: "POST",
+                body: data
+            });
+            if(!response.ok) {
+                console.error(response.statusText);
+                throw Error(response.statusText);
+            }
+
+            const json = await response.json();
+
+            // if no Connect Account was found, then send an alert
+            // Though, this is not possible since both recipients and donors are given one
+            if(json.success === "No Account Found") {
+                alert("Error: No Withdraw Account Found!");
+            } else {
+                accountID = json.id;
+                console.log("Account Found: " + accountID);
+
+                data.append("accountID", accountID);
+            }
+
+        } catch(error) {
+            console.error(error);
+        }
+
+        // checks if account needs to be verified
+        try {
+            const response = await fetch(process.env.REACT_APP_AF_BACKEND_URL +"/stripe/checkConnectRequirements", {
+                method: "POST",
+                body: data
+            });
+            if(!response.ok) {
+                console.error(response.statusText);
+                throw Error(response.statusText);
+            }
+
+            const json = await response.json();
+
+            if(json.success === "STRIPE ERROR") {
+                console.error(json.message);
+            } else {
+                if(json.status === "None") {
+                    requirementsDue = false;
+                } 
+                else {
+                    const requirements = json.requirements;
+                    if(requirements[0] === "external_account") {
+                        alert("Please Add a Bank Account in Settings/Banking Information");
+                        return;
+                    }
+                    requirementsDue = true;
+                }
+                console.log("Account Found: " + accountID);
+                accountID = json.id;
+            }
+
+        } catch(error) {
+            console.error(error);
+        }
+
+        //Change display
+        if(requirementsDue === false){
+            sessionStorage.setItem("Verified", "Verified");
+            this.setState({
+                showVerified:false
+            });
+        } 
+        else {
+            data.append("successURL",window.location.href);
+            data.append("failureURL", window.location.href);
+
+
+            //alert("To enable withdraws, we need more information. Redirecting to form...");
+            swal({title: "To enable withdraws, we need more information. Proceed to information form?", 
+                buttons: {
+                    cancel: "Cancel",
+                    proceed: {
+                        text: "Proceed",
+                        value: "proceed",
+                    },
+                },
+              })
+              .then(async (value) =>{
+                // console.log(value + "hellllllooooo");
+
+                switch(value){
+
+                    case "proceed":
+                        sessionStorage.setItem("Verified", "inProcess");
+                        // console.log("Proceed1111111");
+                        try {
+                            const response = await fetch(process.env.REACT_APP_AF_BACKEND_URL +"/stripe/onboardingInfoRequest", {
+                                method: "POST",
+                                body: data
+                            });
+                            if(!response.ok) {
+                                throw Error(response.statusText);
+                            }
+
+                            const json = await response.json();
+
+                            if(json.success == "STRIPE ERROR") {
+                                alert("Can't reach Stripe")
+                                console.error(json.message);
+                            } else {
+                                console.log(json.message)
+                                window.location.replace(json.message.url);
+                            }
+
+                        } catch(error) {
+                            console.error(error);
+                        }
+                        break;
+
+                    default:
+                        // console.log("Default3333333333");
+
+                        break;
+                }
+              });
+        }
+    }
+
+    // Return a list of HUGs owned by the donor with the given username with
+    // server/src/services/StripeService.ts getOwnedHugs()
+    getOwnedHUGs = async (username) => {
+        const data = new FormData();
+        data.append("username", username);
+
+        try {
+            const response = await fetch(process.env.REACT_APP_AF_BACKEND_URL +"/stripe/getOwnedHugs", {
+                method: "POST",
+                body: data
+            });
+            if (! response.ok) {
+                console.log("Dashboard getOwnedHugs() BAD RESPONSE:");
+                throw Error(response.statusText);
+
+                return [];
+            }
+            const json = await response.json();
+
+            if(json.success === "getOwnedHugs()"){
+                return json;
+            }
+            else {
+                return [];
+            }
+        } catch (error) {
+            console.log("Dashboard getOwnedHugs() ERROR:");
+            console.log(error);
+
+            return [];
+        }
+    }
+
+    // Return only those HUGs of HUGList which have "Pending" status
+    extractPendingHUGs = (HUGList) => {
+        let filteredHUGList = [];
+
+        for (let HUG of HUGList) {
+            if (HUG.Status == "Pending") {
+                filteredHUGList.push(HUG);
+            }
+        }
+
+        return filteredHUGList;
+    }
+
+    // Return a list of HUGs a recipient with the given username has applied to
+    // with server/src/services/StripeService.ts getRecipientAppliedHUGs()
+    //
+    // Useful for recipient dashboards, listing all their applied-to HUGs
+    getRecipientAppliedHUGs = async (recipientUsername) => {
+        const data = new FormData();
+        data.append("recipientUsername", recipientUsername);
+
+        try {
+            const response = await fetch(process.env.REACT_APP_AF_BACKEND_URL+"/stripe/getRecipientAppliedHUGs", {
+                method: "POST",
+                body: data
+            });
+            if (! response.ok) {
+                console.log("Dashboard getRecipientAppliedHUGs() BAD RESPONSE:");
+                throw Error(response.statusText);
+
+                return [];
+            }
+            const json = await response.json();
+
+            if(json.success === "getRecipientAppliedHUGs()"){
+                return json;
+            }
+            else {
+                return [];
+            }
+        } catch (error) {
+            console.log("Dashboard getRecipientAppliedHUGs() ERROR:");
+            console.log(error);
+
+            return [];
+        }
+    }
+
+    // Return all a HUG's applicants with
+    // server/src/services/StripeService.ts getHUGApplicants()
+    //
+    // Useful for donor dashboards, listing all the applicants to their HUG(s)
+    getHUGApplicants = async (HUGID) => {
+        const data = new FormData();
+        data.append("HUGID", HUGID);
+
+        try {
+            const response = await fetch(process.env.REACT_APP_AF_BACKEND_URL+"/stripe/getHUGApplicants", {
+                method: "POST",
+                body: data
+            });
+            if (!response.ok) {
+                console.log("Dashboard getHUGApplicants() BAD RESPONSE:");
+                throw Error(response.statusText);
+
+                return [];
+            }
+            const json = await response.json();
+            console.log("Dashboard getHUGApplicants() SUCCESS:");
+            // console.log(json)
+
+            return json.applicants;
+        } catch (error) {
+            console.log("Dashboard getHUGApplicants() ERROR:");
+            // console.log(error);
+
+            return [];
+        }
+    }
+
+    // Return all a HUG's pending applicants with
+    // server/src/services/StripeService.ts getHUGApplicants()
+    getHUGPendingApplicants = async (HUGID) => {
+        const allApplicants = await this.getHUGApplicants(HUGID);
+        let pendingApplicants = [];
+
+        for (let applicant of allApplicants) {
+            if (applicant.Status == "Pending") {
+                pendingApplicants.push(applicant);
+            }
+        }
+
+        return pendingApplicants;
+    }
+
+    formatBalance(pending, available) {
+        var p = pending.toLocaleString(undefined, { minimumFractionDigits: 2 });
+        var a = available.toLocaleString(undefined, { minimumFractionDigits: 2 });
+        this.setState({
+          pendingBalance: p,
+          availableBalance: a
+        });
+      }
+
+    getBalance = async () => {
+        const data = new FormData();
+        data.append("username", this.props.userName);
+        data.append("usertype", this.props.userType);
+
+        try {
+          const response = await fetch(process.env.REACT_APP_AF_BACKEND_URL+"/transaction/balance", {
+            method: "POST",
+            body: data
+          });
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          const json = await response.json();
+          if (json.success === "Balance found") {
+            this.formatBalance(json.pendingBalance, json.balance);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      // Award the HUG with the given HUGID to the applicant with the given username,
+      // returning true if successful and false otherwise, using
+      // server/src/services/StripeService.ts transferFundFromHUGToRecipient()
+      awardHUG = async (HUGID, username) => {
+        const data = new FormData();
+        data.append("HUGID", HUGID);
+        data.append("recipientID", username);
+
+        try {
+            const response = await fetch(process.env.REACT_APP_AF_BACKEND_URL+"/stripe/transferFundFromHUGToRecipient", {
+                method: "POST",
+                body: data
+            });
+            if (! response.ok) {
+                console.log("Dashboard awardHUG() BAD RESPONSE:");
+                throw Error(response.statusText);
+
+                return false;
+            }
+            const json = await response.json();
+
+            if(json.success === "Updated Awarded status"){
+                return true;
+            }
+            else {
+                return false;
+            }
+        } catch (error) {
+            console.log("Dashboard awardHUG() ERROR:");
+            console.log(error);
+
+            return false;
+        }
+      }
+
+        // Reject the applicant with the given username for the HUG with the given
+        // HUGID, returning true if successful and false otherwise, using
+        // server/src/services/StripeService.ts rejectRecipient()
+        rejectApplicant = async (HUGID, username) => {
+            const data = new FormData();
+            data.append("HUGID", HUGID);
+            data.append("username", username);
+
+            try {
+                const response = await fetch(process.env.REACT_APP_AF_BACKEND_URL+"/stripe/rejectRecipient", {
+                    method: "POST",
+                    body: data
+                });
+                if (! response.ok) {
+                    console.log("Dashboard rejectApplicant() BAD RESPONSE:");
+                    throw Error(response.statusText);
+
+                    return false;
+                }
+                const json = await response.json();
+
+                if(json.success === "Updated Awarded status"){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            } catch (error) {
+                console.log("Dashboard rejectApplicant() ERROR:");
+                console.log(error);
+
+                return false;
+            }
+        }
+
+    render() {
+        //console.log("User type is " + this.state.usertype);
+        return (
+        <div className="dash">
+            {
+                this.props.userType == UserType.DONOR ?
+                    this.getDonorDash()
+                :
+                    this.getRecipientDash()
+            }
+        </div>
+        )
+    }
+
+    // -----------------------------------------------------------------------------------------------//
+    // Below here is the code for generating the recipient's dashboard //
+    // -----------------------------------------------------------------------------------------------//
+
+    getRecipientDash() {
+        return (
+        <Container style={{margin: "0px", maxWidth:"4000px"}}>
+            {/* <text>This is a recipient dashboard</text> */}
+
+            <Row>
+
+                <Col style={{padding: "0px"}}>
+                    {this.getRecipientActionCard()}
+                </Col>
+
+                <Col style={{padding: "0px"}}>
+                    {this.getApplicationCard()}
+                    {this.getAccountsCard()}
+                </Col>
+
+            </Row>
+
+        </Container>
+        )
+    }
+
+    getRecipientActionCard() {
+        return (
+        <Card style={{margin: "2px", marginBottom: "4px"}}>
+            <Card.Body>
+                <Card.Title>{this.getGreeting()}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                    You can find important information here at a glance
+                </Card.Subtitle>
+
+                <Card.Text/>
+
+                <Row style={{width: "100%", margin: "0px"}}>
+                    <Col style={{padding: "0px"}}>
+                    <ListGroup horizontal width="100%">
+                        <ListGroup.Item style={{width: "50%"}}>
+                            <text>Your waiting grant funds:</text>
+                            <h1>{
+                                this.state.availableBalance === undefined?
+                                "$__.__"
+                                :
+                                "$" + this.state.availableBalance
+                            }</h1>
+                        </ListGroup.Item>
+                        <ListGroup.Item style={{width: "50%"}}>
+                            {this.state.showVerified?
+                                <button className ="btn btn-primary btn-block btn-lg" style={{width: "100%", height: "100%", margin: "0px",
+                            size: "lg"}} onClick={this.stripeOnboarding}>{this.state.buttonMessage}</button> 
+                            :
+                                <WithdrawButton buttonText="Claim Your Funds" buttonStyle={{width: "100%", height: "100%", margin: "0px",
+                            size: "lg"}}/>
+                            }
+                        </ListGroup.Item>
+                    </ListGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        {
+                            this.state.availableBalance === undefined ?
+                                <text style={{color: "red"}}>Sorry, we had trouble retrieving your information</text>
+                            :
+                            (this.state.availableBalance == 0 ?
+                                <text style={{color: "red"}}>Your balance is zero. Try applying to more grants</text>
+                            :
+                                <text></text>
+                            )
+                        }
+                    </Col>
+                </Row>
+
+                <Card.Text/>
+
+                <Row style={{width: "100%", margin: "0px"}}>
+                    <Col style={{padding: "0px"}}>
+                    <ListGroup horizontal width="100%">
+                        <ListGroup.Item style={{width: "50%"}}>
+                            <text>Applications Pending:</text>
+                            <h1>
+                            {
+                                this.state.hugs === undefined ? 0
+                                :
+                                this.state.hugs.length
+                            }
+                            </h1>
+                        </ListGroup.Item>
+                        <ListGroup.Item style={{width: "50%"}}>
+                            <Button size="lg" block style={{height: "100%"}} href="/hugbrowser">Apply For Grants</Button>
+                        </ListGroup.Item>
+                    </ListGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        {
+                            this.state.hugs === undefined || this.state.hugs.length === 0 ?
+                                <text style={{color: "red"}}>Click the button to apply for grant funds</text>
+                            :
+                                null
+                        }
+                    </Col>
+                </Row>
+
+                <Card.Text/>
+
+                <Row style={{width: "100%", margin: "0px"}}>
+                    <Col style={{padding: "0px"}}>
+                        <Card.Title>My Applications</Card.Title>
+
+                        {/* Recipient's table of applied-to HUGs */}
+                        <ReactTable
+                                data={this.state.hugs}
+                                columns={[
+                                    {
+                                        headerClassName: "apply-table-thead",
+                                        Header: "Name",
+                                        accessor: "HUGName",
+                                        style: { whiteSpace: "unset" }
+                                    },
+                                    {
+                                        headerClassName: "apply-table-thead",
+                                        Header: "Award",
+                                        accessor: "Balance",
+                                        style: { whiteSpace: "unset" }
+                                    },
+                                    {
+                                        headerClassName: "apply-table-thead",
+                                        Header: "Status",
+                                        accessor: "Status",
+                                        style: { whiteSpace: "unset" }
+                                    }
+                                ]}
+                                showPageSizeOptions={false}
+                                defaultPageSize={5}
+                            />
+                    </Col>
+                </Row>
+                {/* <ButtonGroup vertical style={{width:"100%"}}>
+                    <Button size="lg" block>Claim My Grants</Button>
+                    <Button size="lg" block>View All Applications</Button>
+                </ButtonGroup> */}
+
+
+            </Card.Body>
+
+        </Card>
+        )
+    }
+
+    getAccountsCard() {
+        return (
+            <Card style={{margin: "2px", marginBottom: "4px"}}>
+                <Card.Body>
+                    <Card.Title>My Accounts</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                        Review your banking information here
+                    </Card.Subtitle>
+                    <ReactTable
+                                data={[]}
+                                columns={[
+                                    {
+                                        headerClassName: "apply-table-thead",
+                                        Header: "Sample Column",
+                                        accessor: "something",
+                                        style: { whiteSpace: "unset" }
+                                    }
+                                ]}
+                                defaultPageSize={5}
+                                showPagination={false}
+                            />
+                    <Button block>Add Bank Account</Button>
+                </Card.Body>
+            </Card>
+            )
+    }
+
+    getApplicationCard() {
+        return (
+            <Card style={{margin: "2px", marginBottom: "4px"}}>
+                <Card.Body>
+                    <Card.Title>My Application</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                        Please make sure your personal and medical information is up to date
+                    </Card.Subtitle>
+                    <h2>This section is under construction. We appreciate your patience</h2>
+                </Card.Body>
+            </Card>
+            )
+    }
+
+    // -----------------------------------------------------------------------------------------------//
+    // Below here is the code for generating the donor's dashboard //
+    // -----------------------------------------------------------------------------------------------//
+
+    getDonorDash() {
+        return (
+        <Container style={{margin: "0px", maxWidth:"4000px"}}>
+            {/* <text>This is a recipient dashboard</text> */}
+            <Row >
+
+                <Col style={{padding: "0px"}}>
+                    {this.getDonorActionCard({})}
+                </Col>
+
+                <Col style={{padding: "0px"}}>
+                    {this.getDonationsCard()}
+                    {this.getMyGrantsCard()}
+                </Col>
+
+            </Row>
+
+        </Container>
+        )
+    }
+
+
+    getDonorActionCard() {
+        return (
+        <Card style={{margin: "2px", marginBottom: "4px"}}>
+            <Card.Body>
+                <h3>{this.getGreeting()}</h3>
+                <Card.Subtitle className="mb-2 text-muted">
+                    You can find important information here at a glance
+                </Card.Subtitle>
+
+                <Card.Text/>
+
+                {/* This Section generates the Acount Balance Box */}
+                <Row style={{width: "100%", margin: "0px"}}>
+                    <Col style={{padding: "5px"}}>
+                    <h4>My Account</h4>
+                    <ListGroup horizontal width="100%">
+                        <ListGroup.Item style={{width: "50%"}}>
+                            <text>Your account balance:</text>
+                            <h1>{
+                                this.state.availableBalance === undefined?
+                                "$__.__"
+                                :
+                                "$" + this.state.availableBalance
+                            }</h1>
+                        </ListGroup.Item>
+                        <ListGroup.Item style={{width: "50%"}}>
+                            {/* <Button size="lg" block style={{height: "100%"}}>Donate Now</Button> */}
+                            <DepositButton buttonText="Deposit Now" buttonStyle={{width: "100%", height: "100%", margin: "0px",
+                            size: "lg"}}/>
+                        </ListGroup.Item>
+                    </ListGroup>
+                    </Col>
+                </Row>
+                <Row style={{width: "100%", margin: "0px"}}>
+                    <Col style={{padding: "5px"}}>
+                        <Button block size="lg" href="/hugbrowser">Donate To Grants</Button>
+                    </Col>
+                </Row>
+
+                {/* Show a helpfull message based on the user's account balance */}
+                <Row>
+                    <Col>
+                        {
+                            this.state.availableBalance === undefined ?
+                                <text style={{color: "red"}}>Sorry, we had trouble retrieving your information</text>
+                            :
+                            (this.state.availableBalance == 0 ?
+                                <text style={{color: "red"}}>You must deposit to your balance before donating to grants</text>
+                            :
+                                <text></text>
+                            )
+                        }
+
+                    </Col>
+                </Row>
+
+                <Card.Text/>
+
+                <Row style={{width: "100%", margin: "0px"}}>
+                    <Col style={{padding: "5px"}}>
+                    <h4>My Grants</h4>
+
+                    {/* Donor's table of owned HUGs and their applicants
+                    (probably in a list pop-up accessed with a button in the applicants
+                    column) */}
+                    <ReactTable
+                        data={this.state.hugs}
+                        columns={[
+                            {
+                                headerClassName: "apply-table-thead",
+                                Header: "Name",
+                                accessor: "HUGName",
+                                style: { whiteSpace: "unset" }
+                            },
+                            {
+                                headerClassName: "apply-table-thead",
+                                Header: "ID",
+                                accessor: "HUGID",
+                                style: { whiteSpace: "unset" },
+                                show: false
+                            }
+                        ]}
+                        getTrGroupProps={(state, rowInfo) => {
+                            if (rowInfo && rowInfo.row) {
+                              return {
+                                onClick: (e) => {
+                                  // Unselect
+                                  if(this.state.display_remove && rowInfo.index === this.state.index){
+                                    this.setState({
+                                      display_remove:false,
+                                      index:-1,
+                                      selected_hug:"",
+                                      selected_hugID: -1
+                                    })
+                                  } else if(this.state.display_remove && rowInfo.index !== this.state.index){
+                                      // Clicked on new row
+                                      this.setState({
+                                        index:rowInfo.index,
+                                        selected_hug:rowInfo.row.HUGName,
+                                        selected_hugID: rowInfo.row.HUGID
+                                      })
+                                  } else {
+                                    this.setState({
+                                      // First time click
+                                      display_remove:true,
+                                      index:rowInfo.index,
+                                      selected_hug:rowInfo.row.HUGName,
+                                      selected_hugID: rowInfo.row.HUGID
+                                    })
+                                  }
+                                  console.log(this.state.selected_hugID);
+                                },
+                                style:{
+                                  background: rowInfo.index === this.state.index?"#f0e3d2c":'',
+                                  color:rowInfo.index === this.state.index?"#3771ce":'',
+                                  border: rowInfo.index === this.state.index? "2px solid #3771ce":'',
+                                }
+                              }
+                            }
+                          }
+                        }
+                        defaultPageSize={5}
+                        showPageSizeOptions={false}
+                    />
+                    </Col>
+                </Row>
+                <Row style={{width: "100%", margin: "0px"}}>
+                    <Col style={{padding: "5px"}}>
+                        <Button block size="lg" onClick={this.openModal}>View Applicants</Button>
+                        <ViewApplicants
+                        open={this.state.open}
+                        selected_hug={this.state.selected_hug}
+                        selected_hugID = {this.state.selected_hugID}
+                        closeModal={this.closeModal}
+                        applicants={this.state.applicants}
+                        removeApplicant={this.removeApplicant}
+                        rejectApplicant = {this.rejectApplicant}
+                        awardHUG = {this.awardHUG}
+                        selected_recipient = {this.state.selected_recipient}
+                        handleSelectedRecipient={this.handleSelectedRecipient}
+                         />
+                    </Col>
+                </Row>
+                <Row style={{width: "100%", margin: "0px"}}>
+                    <Col style={{padding: "5px"}}>
+                        <Button block size="lg" href="/createhug">Start Grant</Button>
+                    </Col>
+                </Row>
+
+            </Card.Body>
+        </Card>
+        )
+    }
+
+    getDonationsCard(elements) {
+        return (
+            <Card style={{margin: "2px", marginBottom: "4px"}}>
+            <Card.Body>
+                <Card.Title>Recent Transactions</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                    View your most recent donations and withdrawls
+                </Card.Subtitle>
+
+                <Card.Text>Here is a short list of your most recent transactions</Card.Text>
+                <ReactTable
+                    data={[]}
+                    columns={[
+                        {
+                            headerClassName: "apply-table-thead",
+                            Header: "Sample Column",
+                            accessor: "something",
+                            style: { whiteSpace: "unset" }
+                        }
+                    ]}
+                    defaultPageSize={3}
+                    showPagination={false}
+                />
+                <Card.Text>
+                    Here is a button promting the user to go to the transactions page
+                    for more information
+                </Card.Text>
+
+            </Card.Body>
+        </Card>
+        )
+    }
+
+    getMyGrantsCard() {
+        return (
+            <Card style={{margin: "2px", marginBottom: "4px"}}>
+            <Card.Body>
+                <Card.Title>My Grants</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                    Here you can see a list of all your active grants
+                </Card.Subtitle>
+
+                <Card.Text>
+                    Clicking on a grant will take you to its page
+                </Card.Text>
+
+                <ReactTable
+                    data={[]}
+                    columns={[
+                        {
+                            headerClassName: "apply-table-thead",
+                            Header: "Sample Column",
+                            accessor: "something",
+                            style: { whiteSpace: "unset" }
+                        }
+                    ]}
+                    defaultPageSize={6}
+                    showPagination={false}
+                />
+
+            </Card.Body>
+        </Card>
+        )
+    }
+
+    // -----------------------------------------------------------------------------------------------//
+    // Below here is the code for universal utility functions //
+    // -----------------------------------------------------------------------------------------------//
+
+    notificationsCard() {
+        return (
+            <Card style={{width : '18rem'}}>
+                <Card.Body>
+                    <Card.Title>{this.getGreeting()}</Card.Title>
+                </Card.Body>
+            </Card>
+        )
+    }
+
+    getGreeting() {
+        return typeof this.state.firstName === 'undefined' ?
+                `Welcome ${this.state.userName}`
+            :
+                `Welcome ${this.state.firstName}`
+    }
+
+}
+
+
+
+export default Dashboard;

@@ -1,0 +1,84 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const affordable_shared_models_1 = require("affordable-shared-models");
+const OrganizationUtils_1 = require("./OrganizationUtils");
+const OrganizationDBO_1 = require("../../models/orm/OrganizationDBO");
+describe("OrganizationUtils tests", () => {
+    test("Organization DBO to DTO", () => {
+        const dbo = new OrganizationDBO_1.OrganizationDBO();
+        dbo.id = 43242;
+        dbo.addBankingInfo = false;
+        dbo.apiKey = "apiKey";
+        dbo.ein = "342432";
+        dbo.email = "email add";
+        dbo.fax = "fax num";
+        dbo.irsActivityCode = "code";
+        dbo.mission = "A mission";
+        dbo.name = "Org name";
+        dbo.phone = "12345";
+        dbo.provideService = false;
+        dbo.taxSection = "123455787";
+        dbo.verified = true;
+        dbo.websiteUrl = "my website";
+        const expected = new affordable_shared_models_1.Organization();
+        expected.id = 43242;
+        expected.hasBankingInfo = false;
+        expected.apiKey = "apiKey";
+        expected.ein = "342432";
+        expected.email = "email add";
+        expected.fax = "fax num";
+        expected.irsActivityCode = "code";
+        expected.missionStatement = "A mission";
+        expected.name = "Org name";
+        expected.phone = "12345";
+        expected.providesService = false;
+        expected.taxSection = "123455787";
+        expected.isVerified = true;
+        expected.url = "my website";
+        // Call under test
+        const result = OrganizationUtils_1.OrganizationUtils.mapDboToDto(dbo);
+        expect(result).toEqual(expected);
+    });
+    test("Organization DTO to DBO", () => {
+        const dto = new affordable_shared_models_1.Organization();
+        dto.id = 43242;
+        dto.hasBankingInfo = false;
+        dto.apiKey = "apiKey";
+        dto.ein = "342432";
+        dto.email = "email add";
+        dto.fax = "fax num";
+        dto.irsActivityCode = "code";
+        dto.missionStatement = "A mission";
+        dto.name = "Org name";
+        dto.phone = "12345";
+        dto.providesService = false;
+        dto.taxSection = "123455787";
+        dto.isVerified = true;
+        dto.url = "my website";
+        const expected = new OrganizationDBO_1.OrganizationDBO();
+        expected.id = 43242;
+        expected.addBankingInfo = false;
+        expected.apiKey = "apiKey";
+        expected.ein = "342432";
+        expected.email = "email add";
+        expected.fax = "fax num";
+        expected.irsActivityCode = "code";
+        expected.mission = "A mission";
+        expected.name = "Org name";
+        expected.phone = "12345";
+        expected.provideService = false;
+        expected.taxSection = "123455787";
+        expected.verified = true;
+        expected.websiteUrl = "my website";
+        // Call under test
+        const result = OrganizationUtils_1.OrganizationUtils.mapDtoToDbo(dto);
+        expect(result).toEqual(expected);
+    });
+    test("Redact information", () => {
+        const organization = new affordable_shared_models_1.Organization();
+        organization.apiKey = "my secret";
+        // Call under test
+        const result = OrganizationUtils_1.OrganizationUtils.redactPrivateInformation(organization);
+        expect(result.apiKey).toBeUndefined();
+    });
+});

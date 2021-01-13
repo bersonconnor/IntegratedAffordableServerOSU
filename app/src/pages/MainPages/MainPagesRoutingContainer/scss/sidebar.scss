@@ -1,0 +1,42 @@
+a.nav-link {
+    color: white;
+    text-decoration: none;
+}
+
+a.href{
+    color: white;
+    text-decoration: none;
+}
+
+a.nav-link:hover {
+    color: gray;
+}
+
+.active {
+    background-color: black;
+}
+
+.format-logo-sidebar{
+  border-radius: 40px; // Anything over 40px cuts off the logo!
+  box-sizing: border-box;
+  background-color: white;
+  color: black;
+  height: 95px;
+  width: 100px;
+  padding: 15px;
+}
+
+.sidebar {
+    background-color: #2E2E2E;
+    color: white !important;
+}
+
+#sidebar-balance{
+    border: 1px solid black;
+    text-align: left !important;
+    font-weight: bold;
+    color: black;
+    background-color: rgb(191,114,114);
+    width:100px;
+    padding:5px;
+  }

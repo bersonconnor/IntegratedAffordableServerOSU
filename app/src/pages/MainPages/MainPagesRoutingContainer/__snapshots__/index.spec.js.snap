@@ -1,0 +1,734 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HUG Options should render closed collapsible - HUGs 1`] = `
+<div>
+  <withRouter(LinkContainer)
+    to="/affiliation"
+  >
+    <NavLink
+      aria-controls="organization-navigation"
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "SafeAnchor",
+          "render": [Function],
+        }
+      }
+      className=""
+      disabled={false}
+      onClick={[Function]}
+    >
+      Organizations
+    </NavLink>
+  </withRouter(LinkContainer)>
+  <Collapse
+    appear={false}
+    dimension="height"
+    getDimensionValue={[Function]}
+    in={false}
+    key="organization-navigation"
+    mountOnEnter={false}
+    timeout={300}
+    unmountOnExit={false}
+  >
+    <div
+      id="organization-navigation"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-2"
+        />
+        <div
+          className="col"
+        >
+          <Nav
+            activeKey="/"
+            className="flex-column"
+            fill={false}
+            justify={false}
+          >
+            <withRouter(LinkContainer)
+              to="/affiliation"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Affiliation
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/manager"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Manager
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/services"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Services
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/analytics"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Analytics
+              </NavLink>
+            </withRouter(LinkContainer)>
+          </Nav>
+        </div>
+      </div>
+    </div>
+  </Collapse>
+</div>
+`;
+
+exports[`HUG Options should render open collapsible - HUGs  1`] = `
+<div>
+  <withRouter(LinkContainer)
+    to="/affiliation"
+  >
+    <NavLink
+      aria-controls="organization-navigation"
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "SafeAnchor",
+          "render": [Function],
+        }
+      }
+      className=""
+      disabled={false}
+      onClick={[Function]}
+    >
+      Organizations
+    </NavLink>
+  </withRouter(LinkContainer)>
+  <Collapse
+    appear={false}
+    dimension="height"
+    getDimensionValue={[Function]}
+    in={false}
+    key="organization-navigation"
+    mountOnEnter={false}
+    timeout={300}
+    unmountOnExit={false}
+  >
+    <div
+      id="organization-navigation"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-2"
+        />
+        <div
+          className="col"
+        >
+          <Nav
+            activeKey="/"
+            className="flex-column"
+            fill={false}
+            justify={false}
+          >
+            <withRouter(LinkContainer)
+              to="/affiliation"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Affiliation
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/manager"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Manager
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/services"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Services
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/analytics"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Analytics
+              </NavLink>
+            </withRouter(LinkContainer)>
+          </Nav>
+        </div>
+      </div>
+    </div>
+  </Collapse>
+</div>
+`;
+
+exports[`Organization Options organization link matches snapshot 1`] = `
+<a
+  href="/organization"
+  onClick={[Function]}
+/>
+`;
+
+exports[`Organization Options should render closed collapsible - Organization 1`] = `
+<div>
+  <withRouter(LinkContainer)
+    to="/affiliation"
+  >
+    <NavLink
+      aria-controls="organization-navigation"
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "SafeAnchor",
+          "render": [Function],
+        }
+      }
+      className=""
+      disabled={false}
+      onClick={[Function]}
+    >
+      Organizations
+    </NavLink>
+  </withRouter(LinkContainer)>
+  <Collapse
+    appear={false}
+    dimension="height"
+    getDimensionValue={[Function]}
+    in={false}
+    key="organization-navigation"
+    mountOnEnter={false}
+    timeout={300}
+    unmountOnExit={false}
+  >
+    <div
+      id="organization-navigation"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-2"
+        />
+        <div
+          className="col"
+        >
+          <Nav
+            activeKey="/"
+            className="flex-column"
+            fill={false}
+            justify={false}
+          >
+            <withRouter(LinkContainer)
+              to="/affiliation"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Affiliation
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/manager"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Manager
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/services"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Services
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/analytics"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Analytics
+              </NavLink>
+            </withRouter(LinkContainer)>
+          </Nav>
+        </div>
+      </div>
+    </div>
+  </Collapse>
+</div>
+`;
+
+exports[`Organization Options should render open collapsible - Organization 1`] = `
+<div>
+  <withRouter(LinkContainer)
+    to="/affiliation"
+  >
+    <NavLink
+      aria-controls="organization-navigation"
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "SafeAnchor",
+          "render": [Function],
+        }
+      }
+      className=""
+      disabled={false}
+      onClick={[Function]}
+    >
+      Organizations
+    </NavLink>
+  </withRouter(LinkContainer)>
+  <Collapse
+    appear={false}
+    dimension="height"
+    getDimensionValue={[Function]}
+    in={false}
+    key="organization-navigation"
+    mountOnEnter={false}
+    timeout={300}
+    unmountOnExit={false}
+  >
+    <div
+      id="organization-navigation"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-2"
+        />
+        <div
+          className="col"
+        >
+          <Nav
+            activeKey="/"
+            className="flex-column"
+            fill={false}
+            justify={false}
+          >
+            <withRouter(LinkContainer)
+              to="/affiliation"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Affiliation
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/manager"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Manager
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/services"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Services
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/analytics"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Analytics
+              </NavLink>
+            </withRouter(LinkContainer)>
+          </Nav>
+        </div>
+      </div>
+    </div>
+  </Collapse>
+</div>
+`;
+
+exports[`Sidebar component should render closed collapsible - Applications  1`] = `
+<div>
+  <withRouter(LinkContainer)
+    to="/affiliation"
+  >
+    <NavLink
+      aria-controls="organization-navigation"
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "SafeAnchor",
+          "render": [Function],
+        }
+      }
+      className=""
+      disabled={false}
+      onClick={[Function]}
+    >
+      Organizations
+    </NavLink>
+  </withRouter(LinkContainer)>
+  <Collapse
+    appear={false}
+    dimension="height"
+    getDimensionValue={[Function]}
+    in={false}
+    key="organization-navigation"
+    mountOnEnter={false}
+    timeout={300}
+    unmountOnExit={false}
+  >
+    <div
+      id="organization-navigation"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-2"
+        />
+        <div
+          className="col"
+        >
+          <Nav
+            activeKey="/"
+            className="flex-column"
+            fill={false}
+            justify={false}
+          >
+            <withRouter(LinkContainer)
+              to="/affiliation"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Affiliation
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/manager"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Manager
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/services"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Services
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/analytics"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Analytics
+              </NavLink>
+            </withRouter(LinkContainer)>
+          </Nav>
+        </div>
+      </div>
+    </div>
+  </Collapse>
+</div>
+`;
+
+exports[`Sidebar component should render open collapsible - Applications  1`] = `
+<div>
+  <withRouter(LinkContainer)
+    to="/affiliation"
+  >
+    <NavLink
+      aria-controls="organization-navigation"
+      as={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "displayName": "SafeAnchor",
+          "render": [Function],
+        }
+      }
+      className=""
+      disabled={false}
+      onClick={[Function]}
+    >
+      Organizations
+    </NavLink>
+  </withRouter(LinkContainer)>
+  <Collapse
+    appear={false}
+    dimension="height"
+    getDimensionValue={[Function]}
+    in={false}
+    key="organization-navigation"
+    mountOnEnter={false}
+    timeout={300}
+    unmountOnExit={false}
+  >
+    <div
+      id="organization-navigation"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-2"
+        />
+        <div
+          className="col"
+        >
+          <Nav
+            activeKey="/"
+            className="flex-column"
+            fill={false}
+            justify={false}
+          >
+            <withRouter(LinkContainer)
+              to="/affiliation"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Affiliation
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/manager"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Manager
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/services"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Services
+              </NavLink>
+            </withRouter(LinkContainer)>
+            <withRouter(LinkContainer)
+              to="/analytics"
+            >
+              <NavLink
+                as={
+                  Object {
+                    "$$typeof": Symbol(react.forward_ref),
+                    "displayName": "SafeAnchor",
+                    "render": [Function],
+                  }
+                }
+                disabled={false}
+              >
+                Analytics
+              </NavLink>
+            </withRouter(LinkContainer)>
+          </Nav>
+        </div>
+      </div>
+    </div>
+  </Collapse>
+</div>
+`;

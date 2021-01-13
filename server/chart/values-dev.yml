@@ -1,0 +1,36 @@
+env: dev
+tag: test
+
+limits:
+  memory: "128Mi"
+  cpu: "500m"
+
+port: 4000
+targetPort: 4000
+
+probes:
+  path: /ping
+  initialDelaySeconds: 10
+  timeoutSeconds: 2
+  periodSeconds: 2
+
+secretsOptional: true
+
+configMap: |
+            AFFORDABLE_DB_HOST=docker.for.win.localhost
+            AFFORDABLE_DB_NAME=Affordable
+
+            AFFORDABLE_EMAIL_ENABLED=true
+            AFFORDABLE_SES_REGION=us-east-1
+
+            AFFORDABLE_ADMIN_EMAIL=admin@affordhealth.org
+            AFFORDABLE_ADMIN_ID=1
+            
+            AWS_BUCKET_NAME=ou.messenger.test
+
+            AFFORDABLE_FRONTEND_URL=http://localhost:8080
+            AFFORDABLE_BACKEND_URL=http://localhost:4000
+
+            MAX_FILE_SIZE=25000000
+            UPLOAD_FOLDER=testFolder // Folder within S3 bucket
+            REQUIRE_JWT_VERIFICATION=false

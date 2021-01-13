@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-{{ .Values.env }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}-{{ .Values.env }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}-{{ .Values.env }}
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}-{{ .Values.env }}
+        image: 330259559134.dkr.ecr.us-east-1.amazonaws.com/affordhealth/server:{{ .Values.tag }}
+        #command: [ "sleep", "infinity" ]
+        command: ["node", "./dist/init.js"]
+        resources:
+          limits:
+            memory: {{ .Values.limits.memory }}
+            cpu: {{ .Values.limits.cpu }}
+        ports:
+        - containerPort: {{ .Values.port }}
+        volumeMounts:
+        - name: config-volume
+          mountPath: /affordable/server/.env
+          subPath: .env
+        env:
+        - name: AFFORDABLE_DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: affordable-db-{{ .Values.env }}
+              key: username
+        - name: AFFORDABLE_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: affordable-db-{{ .Values.env }}
+              key: password
+        - name: AFFORDABLE_SES_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: affordable-ses-{{ .Values.env }}
+              key: id
+              optional: {{ .Values.secretsOptional }}
+        - name: AFFORDABLE_SES_KEY_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: affordable-ses-{{ .Values.env }}
+              key: secret
+              optional: {{ .Values.secretsOptional }}
+        - name: AFFORDABLE_ADMIN_USER
+          valueFrom:
+            secretKeyRef:
+              name: affordable-admin-{{ .Values.env }}
+              key: username
+        - name: AFFORDABLE_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: affordable-admin-{{ .Values.env }}
+              key: password
+        - name: AFFORDABLE_TOKEN_SIGNING_KEY
+          valueFrom:
+            secretKeyRef:
+              name: affordable-admin-{{ .Values.env }}
+              key: token
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.probes.path }}
+            port: {{ .Values.port }}
+          initialDelaySeconds: {{ .Values.initialDelaySeconds }}
+          timeoutSeconds: {{ .Values.timeoutSeconds }}
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.probes.path }}
+            port: {{ .Values.port }}
+          initialDelaySeconds: {{ .Values.probes.initialDelaySeconds }}
+          timeoutSeconds: {{ .Values.probes.timeoutSeconds }}
+          periodSeconds: {{ .Values.probes.periodSeconds }}
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ .Chart.Name }}-{{ .Values.env }}
+

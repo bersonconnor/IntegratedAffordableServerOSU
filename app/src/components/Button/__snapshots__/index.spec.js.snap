@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Snapshots should match snapshot for default Button 1`] = `
+<div
+  className="button__container"
+>
+  <button
+    className="button button--primary"
+    onClick={[Function]}
+    type="button"
+  >
+    TestLabel
+  </button>
+</div>
+`;

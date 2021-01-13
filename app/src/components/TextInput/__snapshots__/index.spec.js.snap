@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput Snapshots should match snapshot for default TextInput 1`] = `
+<div
+  className="text-input__container"
+>
+  <input
+    className="text-input"
+    id="test"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    type="text"
+    value=""
+  />
+  <label
+    className="text-input__label text-input__label--inline"
+    htmlFor="test"
+  >
+    Test
+  </label>
+</div>
+`;
+
+exports[`TextInput Snapshots should match snapshot for password TextInput 1`] = `
+<div
+  className="text-input__container"
+>
+  <input
+    className="text-input"
+    id="test"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    type="password"
+    value=""
+  />
+  <label
+    className="text-input__label text-input__label--inline"
+    htmlFor="test"
+  >
+    Test
+  </label>
+</div>
+`;

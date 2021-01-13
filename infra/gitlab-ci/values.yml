@@ -1,0 +1,25 @@
+gitlabUrl: https://www.x3xoj4kpf0ql1dwzact9uu8v01ic81pd.net:5443/
+runnerRegistrationToken: "7iV-yGqozGxnpyEo3qtS"
+concurrent: 4
+checkInterval: 10
+rbac:
+  create: false
+  clusterWideAccess: false
+runners:
+  image: node:12.16.3
+  privileged: false
+  builds:
+    # cpuLimit: 200m
+    # memoryLimit: 256Mi
+    cpuRequests: 100m
+    memoryRequests: 128Mi
+  services:
+    # cpuLimit: 200m
+    # memoryLimit: 256Mi
+    cpuRequests: 100m
+    memoryRequests: 128Mi
+  helpers:
+    # cpuLimit: 200m
+    # memoryLimit: 256Mi
+    cpuRequests: 100m
+    memoryRequests: 128Mi

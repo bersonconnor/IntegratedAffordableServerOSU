@@ -1,0 +1,22 @@
+env: dev
+tag: test
+
+limits:
+  memory: "128Mi"
+  cpu: "500m"
+
+port: 3000
+targetPort: 8080
+
+probes:
+  path: /
+  initialDelaySeconds: 10
+  timeoutSeconds: 2
+  periodSeconds: 2
+
+secretsOptional: true
+
+configMap: |
+            REACT_APP_AF_BACKEND_URL=http://localhost:6000
+            REACT_APP_EXPRESS_PORT=3000
+            

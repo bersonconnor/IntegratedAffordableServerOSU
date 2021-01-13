@@ -1,0 +1,143 @@
+import React, { Component } from "react";
+import ReactTable from "react-table";
+import { AffordableClient } from "affordable-client";
+import CollapseWithHeader from "../../../components/CollapseWithHeader";
+
+import "../Settings/scss/settings.scss";
+import "./scss/filemanager.scss";
+import "../../../styles/buttons.css";
+
+import { UserType } from "affordable-shared-models";
+import FMS from "./filemanager/src/FMS.js";
+
+class Filemanager extends Component {
+	constructor(props) {
+    		super(props);
+ 		this.client = new AffordableClient();
+  		this.state = {
+      			userID: this.props.userId,
+      			username: this.props.user,
+      			usertype: this.props.userType
+    		};
+	}
+	render() {
+	return (
+		<div className="col
+	)};
+}
+export default Filemanager;
+  /*render() {
+    return (
+      <div className="col">
+        <div className="move-right">
+          <div className="sectionBarStyle">
+            <div className="infoPanel">
+              <div>INFORMATION</div>
+              <p>
+                Before attempting to commit a transaction, make sure to have a
+                saved payment method in the Banking Information tab in the
+                Settings page.
+                </p>
+            </div>
+          </div>
+        </div>
+        <div className="bot-col">
+          <CollapseWithHeader title="Transaction History" open={true}>
+            {"admin".localeCompare(this.state.username) === 0? 
+            <ReactTable
+              data={this.state.transactions}
+              columns={[
+                {
+                  headerClassName: "apply-table-thead",
+                  Header: "Date",
+                  accessor: "date",
+                  style: { whiteSpace: "unset" }
+                },
+                {
+                  headerClassName: "apply-table-thead",
+                  Header: "Type",
+                  accessor: "type",
+                  style: { whiteSpace: "unset" }
+                },
+                {
+                  headerClassName: "apply-table-thead",
+                  Header: "Name",
+                  accessor: "name",
+                  style: { whiteSpace: "unset" },
+                  show: true
+                },
+                {
+                  headerClassName: "apply-table-thead",
+                  Header: "Amount",
+                  accessor: "amount",
+                  style: { whiteSpace: "unset" }
+                },
+                {
+                  headerClassName: "apply-table-thead",
+                  Header: "Status",
+                  accessor: "status",
+                  style: { whiteSpace: "unset" }
+                }
+              ]}
+              showPageSizeOptions={false}
+              defaultPageSize={10}
+
+              filtered={this.state.filter}
+              sorting={0}
+              sortable={true}
+
+              className="-striped -highlight"
+              style={{
+                height: "400px",
+              }}
+            />
+            :
+            <ReactTable
+              data={this.state.transactions}
+              columns={[
+                {
+                  headerClassName: "apply-table-thead",
+                  Header: "Date",
+                  accessor: "date",
+                  style: { whiteSpace: "unset" }
+                },
+                {
+                  headerClassName: "apply-table-thead",
+                  Header: "Type",
+                  accessor: "type",
+                  style: { whiteSpace: "unset" }
+                },
+                {
+                  headerClassName: "apply-table-thead",
+                  Header: "Amount",
+                  accessor: "amount",
+                  style: { whiteSpace: "unset" }
+                },
+                {
+                  headerClassName: "apply-table-thead",
+                  Header: "Status",
+                  accessor: "status",
+                  style: { whiteSpace: "unset" }
+                }
+              ]}
+              showPageSizeOptions={false}
+              defaultPageSize={10}
+
+              filtered={this.state.filter}
+              sorting={0}
+              sortable={true}
+
+              className="-striped -highlight"
+              style={{
+                height: "400px",
+              }}
+            />
+            }
+          </CollapseWithHeader>
+        </div>
+
+      </div>
+    );
+  }*/
+
+

@@ -1,0 +1,472 @@
+import React from "react";
+import { FileManager, FileNavigator } from '../../../../../../../node_modules/@opuscapita/react-filemanager';
+import Sidebar from './sidebar.js'
+import connectorNodeV1 from '../../../../../../../node_modules/@opuscapita/react-filemanager-connector-node-v1';
+import FileViewer from 'react-file-viewer';
+import './FMS.css';
+import Dropzone from './Dropzone.js'
+import Modal from 'react-modal';
+import ReactDOMServer from 'react-dom/server'
+import './permissions.css';
+
+const file = "https://s3.us-east-2.amazonaws.com/gdemo.affordhealth.org/ECON+249+Roundtable+3.pdf";
+
+const apiOptions = {
+  ...connectorNodeV1.apiOptions,
+  apiRoot: 'http://localhost:3020' // Or you local Server Node V1 installation.
+}
+
+var count = 0;
+
+class FMS extends React.Component {
+  constructor(props) {
+    super(props);
+    this.moveBar = this.moveBar.bind(this);
+    this.showDropUI = this.showDropUI.bind(this);
+    this.hideDropUI = this.hideDropUI.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.changeCurrId = this.changeCurrId.bind(this);
+    this.state = {
+      barClass: "hideBar",
+      managerClass: "manager",
+      dropZoneUI: "",
+      showModal: false,
+      currId: "Lw"
+    };
+  }
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
+
+  moveBar() {
+      if (this.state.barClass === "active") {
+        this.setState({
+          barClass: "hideBar",
+          managerClass: "manager"
+        });
+      }
+      else {
+        this.setState({
+          barClass: "active",
+          managerClass: "smallManager"
+        });
+      }
+  }
+
+  showDropUI() {
+    count++;
+      this.setState({
+        dropZoneUI: "overlayUI"
+    });
+  }
+
+  hideDropUI(isDrop) {
+    count--;
+    if(count <= 0) {
+      this.setState({
+        dropZoneUI: ""
+      });
+      if(isDrop) {
+         this.changeCurrId();
+         var timeout = setTimeout("location.reload(true);",1000);
+      }
+    }
+  }
+
+  changeCurrId() {
+    this.setState({
+      currId: document.getElementById("currIdText").innerHTML
+    });
+  }
+
+
+  render() {
+    var rc; // Global variable containing the current resource children
+    var isSelected = false; // Global variable that is true if a resource is selected and false otherwise
+    var djsConfigs = {
+        addRemoveLinks: false,
+        acceptedFiles: ".jpg, .pdf, .docx, .csv, .xslx, .png, .jpeg, .txt, .tif, .gif, .bmp, .mp4, .webm, .mp3",
+        params: {
+            type: 'file',
+            parentId: this.state.currId,
+        },
+        previewTemplate: ReactDOMServer.renderToStaticMarkup(
+            /*<div >
+              {<div className="dz-details">
+
+                <div className="dz-filename"><span data-dz-name="true"></span></div>
+
+                <img data-dz-thumbnail="true" />
+
+              </div>
+
+              <div className="dz-progress"><span className="dz-upload" data-dz-uploadprogress="true"></span></div>
+
+              <div className="dz-success-mark"><span>✔</span></div>
+
+              <div className="dz-error-mark"><span>✘</span></div>
+
+              <div className="dz-error-message"><span data-dz-errormessage="true"></span></div> }
+
+            </div>*/
+          )
+    };
+
+    return (
+      <div className="App">
+	<div id="update_modal" className={"modal"}>
+	   <div className={"modal-content"}>
+	     <span id="uClose" className={"close"}>&times;</span>
+	     <h1>Permission Manager</h1>
+	     <hr/>
+	     <table className={"styled-table"}>
+        	<tr>
+	           <td>
+        	      <h4>The permissions of <b><label id="file_lb2" /></b> have been updated. <b><label id="user_lb2" /></b> can now <b><label id="perm_lb2" /></b>.</h4>
+	           </td>
+        	</tr>
+	     </table>
+	     <div align="right"><button className={"nbutton"} id="closeBtn">Close</button></div>
+	   </div>
+	</div>
+	<div id="confirmation_modal" className={"modal"}>
+	   <div className={"modal-content"}>
+	     <span id="cClose" className={"close"}>&times;</span>
+	     <h1>Permission Manager</h1>
+	     <hr/>
+	     <table className={"styled-table"}>
+        	<tr>
+	           <td>
+		      <h4>Do you really want to give <b><label id="user_lb1">USER</label></b> the ability to <b><label id="permissions_lb1">PERMISSIONS</label></b> for the file named <b><label id="file_lb1">FILE</label></b>?</h4>
+	           </td>
+        	</tr>
+		<tr>
+		   <td align="right">
+			<button className={"yesbutton"} id="yesBtn">Yes</button>
+		   	<button className={"nobutton"} id="noBtn">No</button>
+		   </td>
+		</tr>
+	     </table>
+	   </div>
+	</div>
+	<div id="permissions_modal" className={"modal"}>
+	  <div className={"modal-content"}>
+	    <span id="pClose" className={"close"}>&times;</span>
+	    <h1>Permission Manager</h1>
+	    <hr/>
+	    <table className={"styled-table"}>
+        	<tr>
+                	<td>
+		       	<h4>File(s)</h4>
+			<input className={"styled-tb"} id="file_tb" />
+                	</td>
+	        </tr>
+        	<tr>
+                	<td>
+	                <h4>User</h4>
+        	        <select className={"styled-select"} id="user_dd" >
+				<option value="">Select...</option>
+				<option value="User 1">User 1</option>
+				<option value="User 2">User 2</option>
+				<option value="User 3">User 3</option>
+				<option value="User 4">User 4</option>
+				<option value="User 5">User 5</option>
+			</select>
+                	</td>
+	        </tr>
+		<tr>
+			<td>
+                        	<h4>Permissions</h4>
+	                </td>
+		</tr>
+		<tr>
+			<td>
+			<input className={"styled-cb"} id="update_delete_cb" type="checkbox" name="Update and Delete"/>
+			<div className={"styled-cb-label"}>
+			     Update and Delete
+			</div>
+			</td>
+		</tr>
+	        <tr>
+        	        <td>
+                	<input className={"styled-cb"} id="view_copy_cb" type="checkbox" name="View and Copy"/>
+			<div className={"styled-cb-label"} >
+        	             View and Copy
+                	</div>
+	                </td>
+        	</tr>
+	        <tr>
+        	        <td>
+                	<input className={"styled-cb"} id="granting_cb" type="checkbox" name="Grant Other Users Permissions"/>
+			<div className={"styled-cb-label"} >
+        	             Grant Other Users Permissions
+                	</div>
+	                </td>
+        	</tr>
+		<tr><td></td></tr>
+	    </table>
+	    <div align="right"><button className={"pbutton"} id="updateBtn">Update</button></div>
+	  </div>
+	</div>
+	 <FileManager className = {this.state.managerClass}>
+            <FileNavigator
+              id="filemanager-1"
+              api={connectorNodeV1.api}
+              apiOptions={apiOptions}
+              // Adding the permissions button
+	      capabilities={(apiOptions, actions) => ([
+	        	...(connectorNodeV1.capabilities(apiOptions, actions)),
+        		({
+          		id: 'permission-button',
+			// Icon in the tool bar for the permissions manager (currently is a lock)
+			icon: {
+                        svg: '<img src="https://png.pngtree.com/png-vector/20190115/ourmid/pngtree-vector-lock-icon-png-image_318067.jpg" />'
+                        },
+			// Text that appears when hovering over icon for permissions manager
+	          	label: 'Permissions',
+			// When a file or folder is selected by the user, the permission manager is enabled and is disabled otherwise.
+			// isSelected is updated in the onSelectionChange method as well as within the handler for specific cases.
+          		shouldBeAvailable: () => isSelected,
+        	  	availableInContexts: ['toolbar'],
+			// What happens when the permission manager's lock icon is pressed by the user
+	          	handler: () => {
+				// Get the modals
+				var pModal = document.getElementById("permissions_modal");
+				var cModal = document.getElementById("confirmation_modal");
+				var uModal = document.getElementById("update_modal");
+
+				// Get the 'x' button that closes the modals
+				var pSpan = document.getElementById("pClose");
+				var cSpan = document.getElementById("cClose");
+				var uSpan = document.getElementById("uClose");
+
+				// Get buttons that are on the modals
+				var uBtn = document.getElementById("updateBtn");
+				var nBtn = document.getElementById("noBtn");
+				var yBtn = document.getElementById("yesBtn");
+				var cBtn = document.getElementById("closeBtn");
+
+				// Get inputs and their associated labels
+				var fileTB 	= document.getElementById("file_tb");
+				var fileLB1 	= document.getElementById("file_lb1");
+				var fileLB2 	= document.getElementById("file_lb2");
+				var userDD 	= document.getElementById("user_dd");
+				var userLB1 	= document.getElementById("user_lb1");
+				var userLB2 	= document.getElementById("user_lb2");
+				var udCB 	= document.getElementById("update_delete_cb");
+				var vcCB 	= document.getElementById("view_copy_cb");
+				var gCB 	= document.getElementById("granting_cb");
+				var permLB1 	= document.getElementById("permissions_lb1");
+				var permLB2 	= document.getElementById("perm_lb2");
+
+				// Make modal appear since button was pressed
+				pModal.style.display = "block";
+
+				// When the user clicks on <span> (x), close the modals and make the lock icon disabled
+				pSpan.onclick = function() {
+				  isSelected = false;
+				  pModal.style.display = "none";
+				}
+				cSpan.onclick = function() {
+				  isSelected = false;
+				  cModal.style.display = "none";
+				}
+				uSpan.onclick = function() {
+				  isSelected = false;
+				  uModal.style.display = "none";
+				}
+
+				// When the user clicks anywhere outside of the modals, close it and make the lock icon disabled
+				window.onclick = function(event) {
+				  isSelected = false;
+				  if (event.target == pModal) {
+				   pModal.style.display = "none";
+				  }
+				  if (event.target == cModal) {
+				   cModal.style.display = "none";
+				  }
+				  if (event.target == uModal) {
+				   uModal.style.display = "none";
+				  }
+				}
+
+				// When the user presses update button, close permissions_modal and open confirmation_modal
+				uBtn.onclick = function() {
+					// Make permissions modal invisible and make the confirmation modal appear
+					pModal.style.display = "none";
+					cModal.style.display = "block";
+
+					// Change the labels in both the confirmation and update modal to reflect user input
+					fileLB1.innerHTML = fileTB.value;
+					fileLB2.innerHTML = fileTB.value;
+					userLB1.innerHTML = userDD.value;
+					userLB2.innerHTML = userDD.value;
+
+					// Collect the permissions the user selected as a proper english list
+					var permStr = "";
+					var and = ", and ";
+					var comma = ", ";
+					var isMulti = false;
+					if (udCB.checked) {
+						permStr += udCB.name;
+						isMulti = true;
+					}
+					if (vcCB.checked) {
+						if (isMulti) {
+							if (gCB.checked) {
+								permStr += comma;
+							}
+							else {
+								permStr += and;
+							}
+						}
+						permStr += vcCB.name;
+						isMulti = true;
+					}
+					if (gCB.checked) {
+	                                        if (isMulti) {
+        	                                        permStr += and;
+                                                }
+                                                permStr += gCB.name;
+					}
+					permLB1.innerHTML = permStr;
+					permLB2.innerHTML = permStr;
+				}
+				// When the user presses the no button, go back to permissions_modal
+				nBtn.onclick = function() {
+					pModal.style.display = "block";
+					cModal.style.display = "none";
+				}
+
+				// When the user presses the yes button, give alert that it has been updated
+				yBtn.onclick = function() {
+					cModal.style.display = "none";
+					uModal.style.display = "block";
+				}
+
+				// When the user closes the update message, close the message
+				cBtn.onclick = function() {
+					uModal.style.display = "none";
+				}
+			}
+        		})
+      		])}
+              listViewLayout={connectorNodeV1.listViewLayout}
+              viewLayoutOptions={connectorNodeV1.viewLayoutOptions}
+              className = {this.state.dropZoneUI}
+	     // When the user's selection changes, do the following
+	     onSelectionChange={
+		 selection => {
+			// Get the number of items selected. Set isSelected to true if there are any selected items and false otherwise.
+			var numIds = selection.length;
+			isSelected = numIds > 0;
+
+			// Logging for testing
+			console.log('selection.length', numIds);
+			console.log('isSelected', isSelected);
+
+			// Get permission modals and their current display type
+			var pModal = document.getElementById("permissions_modal");
+			var psd = pModal.style.display;
+			var cModal = document.getElementById("confirmation_modal");
+			var csd = cModal.style.display;
+			var uModal = document.getElementById("update_modal");
+			var usd = uModal.style.display;
+
+			// If all the permission related modals are not dispalying
+			if ((psd === "none" || psd === "") && (csd === "none" || csd === "") && (usd === "none" || usd === "")) {
+				// Log the resource children and the current selection for testing
+				console.log('resourceChildren', rc);
+				console.log('onSelectionChange', selection);
+
+				// Find the filename of the first selection by iterating over resource children
+				var name = "";
+				var idsFound = 0;
+				for (var key in rc) {
+					// Get the resource using the key
+					var r = rc[key];
+
+					// Log the current resource for testing
+					console.log('resource', r);
+					if (selection.includes(r.id)) {
+						idsFound += 1;
+						// if the first id is found, just add the name
+						if (idsFound == 1) {
+							name = r.name;
+						}
+						// else add the name with a comma
+						else {
+							name += (", " + r.name);
+						}
+
+						// if all ids are found, we are done
+						if (idsFound == numIds) {
+							break;
+						}
+					}
+				}
+
+				// Set the text box to the name
+				var fileTB = document.getElementById("file_tb");
+				fileTB.disabled = false;
+				fileTB.value = name;
+
+				// Resize the textbox so it fits the text exactly
+				fileTB.style.width = fileTB.value.length + "ch";
+
+				// Disable the textbox so user cannot change text
+				fileTB.disabled = true;
+			}
+		}
+           }
+	   // When the resourceChildren change (all resources within the file manager - they only change when the file manager is opened or refreshed), do the following
+	   onResourceChildrenChange={
+		resourceChildren=> {
+			// Log the resourceChildren for testing
+			console.log('onResourceChildrenChange', resourceChildren);
+
+			// When the resourceChildren are loaded in store then in global variable for use
+			rc = resourceChildren;
+		}
+	   }
+	   />
+          </FileManager>
+        <Modal
+           isOpen={this.state.showModal}
+           contentLabel="onRequestClose Example"
+           onRequestClose={this.handleCloseModal}
+           className="Modal"
+           overlayClassName="Overlay"
+        >
+          <center className = "view">
+            <FileViewer
+              fileType={"pdf"}
+              filePath={file}
+            />
+          </center>
+          </Modal>
+        <Dropzone
+         onDrag = {() => this.showDropUI()}
+         onDragExit = {() => this.hideDropUI(false)}
+         onDrop = {() => this.hideDropUI(true)}
+         djsConfig = {djsConfigs}
+        />
+        <button className = "hideBar" id ="clickButton" onClick = {() => {this.handleOpenModal()}}>
+        </button>
+        <div className = "hideBar" id ="currIdText">
+        </div>
+      </div>
+	);
+    }
+}
+
+export default FMS;
+
+// Log that file manager has been exported for testing
+console.log("FMS EXPORTED");

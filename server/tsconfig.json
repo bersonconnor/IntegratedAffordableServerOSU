@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "outDir": "./dist",
+        "allowJs": true,
+        "esModuleInterop": true,        
+        "target": "ES2019",
+        "moduleResolution": "node",
+        "types": ["jest", "node"]
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}

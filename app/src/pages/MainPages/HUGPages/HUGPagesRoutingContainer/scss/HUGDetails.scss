@@ -1,0 +1,92 @@
+#HUG-details-container {
+    display: grid;
+    margin: auto;
+    grid-template-columns: auto 60vw auto;
+    overflow: hidden;
+}
+
+#HUG-details-container > * {
+    margin: auto;
+    width: 93.4%;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-style: solid;
+    border-color: #878787;
+    border-width: .1rem;
+}
+
+#HUG-title {
+    grid-column: 1 / span 3;
+    grid-row: 1;
+    font-family: Oxygen, sans-serif;
+    font-size: 2rem;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 3rem;
+    background-color: #c9c9c9;
+}
+
+#HUG-description {
+    grid-column: 1 / span 3;
+    grid-row: 2;
+    margin-top: 2rem;
+    background-color: #fff;
+    border-style: solid;
+    border-color: #878787;
+    border-width: .1rem;
+}
+
+#progress-action-container {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: none;
+}
+
+#HUG-progress {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #c9c9c9;
+    font-family: Oxygen, sans-serif;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    border-style: solid;
+    border-color: #878787;
+    border-width: .1rem;
+    overflow: hidden;
+    padding: 25px;
+}
+
+#goal {
+    grid-column: 1 / span 3;
+    grid-row: 1;
+}
+
+#progress {
+    grid-column: 1 / span 3;
+    grid-row: 2;
+}
+
+#progress-bar {
+    grid-column: 2;
+    grid-row: 3;
+    margin: 1rem;
+}
+
+#HUG-action-button {
+    grid-column: 2;
+    grid-row: 4;
+    border-style: none;
+    width: auto;
+    margin: auto;
+}
+
+.progress {
+    height: 2rem !important;
+    width: 35rem;
+    font-size: 1rem !important;
+}

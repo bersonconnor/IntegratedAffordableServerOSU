@@ -1,0 +1,301 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600|Oxygen:400,700&display=swap');
+
+* {
+  font-family: Oxygen, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  margin: 0rem;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  background-color: #F2EAE6;
+  min-height: 100vh;
+}
+
+/*Legacy styling used in Auth Pages*/
+.App-border2 {
+  border-radius: 50px;
+  box-sizing: border-box;
+  background-color: white;
+  border: 2px solid;
+  color: black;
+  height: 180px;
+  width: 180px;
+  padding: 10px;
+}
+
+.App-pass {
+  color: green;
+}
+
+.App-fail {
+  color: red;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.App-body {
+  padding: 100px;
+}
+
+.App-body-register2 {
+  padding: 50px;
+}
+
+.App-Buttons {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.App-login-input {
+  width: 300px;
+  height: 50px;
+  padding-right: 0px;
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  text-align: center;
+  opacity: 0.5;
+}
+
+.App-login-in {
+  width: 300px;
+  height: 50px;
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  text-align: center;
+  opacity: 0.5;
+}
+
+.App-login-in2 {
+  width: 300px;
+  height: 50px;
+  padding: 20px;
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  text-align: center;
+  opacity: 0.5;
+}
+
+.App-login-input:focus {
+  border-color: #6e8095;
+  outline: none;
+}
+
+.App-login-button {
+  width: 300px;
+  height: 50px;
+  padding: 0;
+  font-size: 20px;
+  color: darkblue;
+  text-align: center;
+  background: white;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 0;
+}
+
+.App-login-button3 {
+  width: 200px;
+  height: 50px;
+  padding: 100;
+  font-size: 20px;
+  color: darkblue;
+  text-align: center;
+  background: white;
+  border: 20;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 50;
+}
+
+.App-login-button4 {
+  width: 300px;
+  height: 50px;
+  font-size: 15px;
+  background: rgb(223, 162, 247);
+  color: blue;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  text-align: center;
+  opacity: 0.5;
+  padding: 10px;
+}
+
+.App-button2 {
+  width: 300px;
+  height: 50px;
+  padding: 0;
+  font-size: 20px;
+  color: darkblue;
+  text-align: center;
+  background: yellow;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 0;
+}
+
+.App-login-button2 {
+  width: 300px;
+  height: 50px;
+  font-size: 15px;
+  background: greenyellow;
+  color: blue;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  text-align: center;
+  opacity: 0.5;
+  padding: 10px;
+}
+
+.App-user-registration-button {
+  height: 50px;
+  font-size: 20px;
+  color: darkblue;
+  text-align: center;
+  background: white;
+  border: 20;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 50;
+  margin: 10px 0; 
+}
+
+// Donate button on the Login and Main Landing pages
+#donate-button {
+    width: 300px !important;
+    height: 50px !important;
+    padding: 0;
+    font-size: 20px;
+    color: white;
+    line-height: 50px;
+    text-align: center;
+    background: #e4504f; // Logo red
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: 0;
+    margin-top: 50px;
+}
+
+// On press
+#donate-button:active {
+    background: red;
+}
+
+.auditContainer {
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+}
+
+.auditTrailLabel {
+  margin-bottom: 5px;
+}
+
+.adminTable {
+  font-family: Oxygen, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin-top: 15px;
+  box-shadow: 2px 2px 5px grey;
+  &.adminTableSmallFont {
+    font-size: 12px
+  }
+  th, td {
+    width: 20px;
+    text-align: center !important;
+    text-align: left;
+  }
+  tr {
+    background-color: #fff;
+    &:nth-of-type(odd) {
+      background-color: #dcdcdc;
+    }
+  }
+  .adminButton {
+    width: 100px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  } 
+}
+
+.adminPageContainer {
+  width: 100%;
+  margin: 20px;
+}
+
+.emailInput {
+  margin-bottom: 7px;
+}
+
+#email-container {
+  background-color: #F5F5F5;
+  width: 80%;
+  margin: 20px auto;
+  padding: 0 10px;
+  box-shadow: 2px 2px 5px grey;
+  #header {
+    margin-top: 20px;
+  }
+  #email {
+    float: left;
+    width: 100%;
+    height: 400px;
+    resize: none;
+  }
+  #email-subject {
+    width: 100%;
+  }
+  #label {
+    margin: 0;
+    font-family: Oxygen, sans-serif;
+    font-size: 20px;
+  }
+  // #header-right {
+  //   margin-left: 35px;
+  // }
+  // #header-left {
+  //   margin-right: 35px;
+  // }
+  #submit {
+    float: right;
+    margin: 20px;
+  }
+}
+
+.selectionContainer {
+  margin-left: 5%;
+}

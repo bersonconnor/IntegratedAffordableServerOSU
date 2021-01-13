@@ -1,0 +1,19 @@
+div.nav-item a {
+    color: black;
+    padding: 0rem 1rem;
+}
+
+div.nav-item a:hover {
+    font-weight: bold;
+    color: black;
+}
+
+div.nav-item a.active {
+    font-weight: bold;
+    background-color: transparent;
+}
+
+hr.nav {
+    margin-top: 0.25rem;
+    border: 0.2rem solid black;
+}

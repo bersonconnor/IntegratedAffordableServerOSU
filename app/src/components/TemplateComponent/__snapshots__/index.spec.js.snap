@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TemplateComponent Snapshots should match snapshot for default TemplateComponent 1`] = `
+<div>
+  This is a 
+  TemplateComponent
+</div>
+`;

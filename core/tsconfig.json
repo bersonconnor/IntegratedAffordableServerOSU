@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "module": "commonjs",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "allowJs": false,
+        "esModuleInterop": true,
+        "target": "es6",
+        "resolveJsonModule": true
+    },
+    "include": [
+        "./src/**/*"
+    ],
+}

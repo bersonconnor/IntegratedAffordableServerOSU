@@ -1,0 +1,33 @@
+{
+  "scripts": {
+    "build": "yarn build:core && yarn build:client && yarn build:server && yarn build:app",
+    "build:core": "yarn --cwd ./core/ install && yarn --cwd ./core/ compile",
+    "build:client": "yarn --cwd ./client/ install && yarn --cwd ./client/ compile",
+    "build:server": "yarn --cwd ./server/ install && yarn --cwd ./server/ compile",
+    "build:app": "yarn --cwd ./app/ install && yarn --cwd ./app/ compile",
+    "build:ci": "yarn build:ci:core && yarn build:ci:client && yarn build:ci:server && yarn build:ci:app",
+    "build:ci:core": "yarn --cwd ./core/ install --pure-lockfile --cache-folder .yarn && yarn --cwd ./core/ compile",
+    "build:ci:client": "yarn --cwd ./client/ install --pure-lockfile --cache-folder .yarn && yarn --cwd ./client/ compile",
+    "build:ci:server": "yarn --cwd ./server/ install --pure-lockfile --cache-folder .yarn && yarn --cwd ./server/ compile",
+    "build:ci:app": "yarn --cwd ./app/ install --pure-lockfile --cache-folder .yarn && yarn --cwd ./app/ compile"
+  },
+  "dependencies": {
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.4.0",
+    "blob": "^0.1.0",
+    "body-parser": "^1.19.0",
+    "connect-multiparty": "^2.2.0",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "formidable": "^1.2.2",
+    "moment": "^2.24.0",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "multiparty": "^4.2.1",
+    "plaid": "^4.11.0",
+    "react-plaid-link": "^2.3.0-alpha.0",
+    "stripe": "^8.47.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
+  }
+}

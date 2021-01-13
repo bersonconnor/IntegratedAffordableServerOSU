@@ -1,0 +1,150 @@
+.headingStyle {
+    margin: 0px 0px 0px 0px;
+    padding: 10px 0px 10px 0px;
+}
+
+.selectedStyle {
+    background: #ADD8E6;
+    padding: 5px 5px 5px 5px;
+    user-select: none;
+    font-size: 1.4em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    border: 1px solid black;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+.notSelectedStyle {
+    background: #999999;
+    padding: 5px 5px 5px 5px;
+    user-select: none;
+    font-size: 1.4em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    border: 1px solid black;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+.sectionBarStyle {
+    background: #eaeaea;
+    margin: 0px 0px 0px 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.dropdownWrapper {
+    background: #e3e2f2;
+    border-top: 0px;
+    border-bottom: 1px;
+    border-left: 1px;
+    border-right: 1px;
+    border-style: solid;
+    border-color: #878787;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.securityRecommendationsList {
+    background: inherit;
+    list-style-type: inherit;
+}
+
+.securityRecommendationsList li{
+    padding-bottom: 5px;
+}
+
+.inlineCheckbox {
+    display: -webkit-inline-box;
+}
+
+.textAreaEncryption {
+    width: 100%;
+}
+
+.twoFactorButton {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.twoFactorImg {
+    width: 15%;
+}
+
+.markerContainer {
+    display: flex;
+}
+
+.marker {
+    width: 1.5em;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    border-radius: 1em;
+    border-style: solid;
+    border-color: black;
+}
+
+.markerTrue {
+    background: black;
+}
+
+.markerFalse {
+    background: white;
+}
+
+.activityButton {
+    font-size: 1.1em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.questionChangeWrapper {
+    background: #ADD8E6;
+    display: inline-grid;
+    padding-left: 1.05em;
+    padding-right: 1.05em;
+    padding-top: 1.05em;
+    border-top-left-radius: 1.05em;
+    border-top-right-radius: 1.05em;
+    width: 50%;
+}
+
+.btnText {
+    font-size: 1.05em;
+}
+
+.bottomMarginSmall {
+    margin-bottom: 5px;
+}
+
+.settingsP {
+    padding-top: 10px;
+    padding-left: 5px;
+}
+
+.headingPaddingRightSmall {
+    padding-right: 5px;
+}
+
+.emailsTablePanel {
+    width: 100%;
+}
+
+.customRadioButtonBorder {
+    border-color: white;
+    border-style: groove;
+    border-width: 5px;
+    height: 25px;
+}
+
+.removeDeviceInput {
+    margin-left: 3px;
+}
+
+.tabPadding {
+    padding-bottom: 20px;
+}

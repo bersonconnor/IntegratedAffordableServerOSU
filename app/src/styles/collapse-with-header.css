@@ -1,0 +1,27 @@
+/*Arrow Styling*/
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+/*Collapsible Header*/
+.collapse-header {
+  background-color: #dadada;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: #acacac;
+  border-width: .1rem;
+  margin: 10px;
+}

@@ -1,0 +1,45 @@
+.modal {
+  font-size: 12px;
+}
+.header {
+  width: 100%;
+  font-weight: bold;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  background-color: rgb(191,114,114);
+  color:black!important;
+}
+
+.content {
+  width: 100%;
+  padding: 10px 5px;
+  text-align: left;
+  background-color: rgb(242,232,240);
+  color:black!important;
+}
+.actions {
+  width: 100%;
+  margin: auto;
+  border: 1px solid rgb(191,114,114);
+  color:black!important;
+}
+.close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 1px 5px 6px 5px;
+  line-height: 20px;
+  right: 7px;
+  top: 7px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 100%;
+  border: 1px solid rgb(191,114,114);
+  color:black!important;
+}
+
+.floats-right{
+  float:right;
+}

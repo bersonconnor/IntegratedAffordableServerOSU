@@ -1,0 +1,720 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2020-04-23T19:14:01.906Z",
+    "__export_source": "insomnia.desktop.app:v7.1.1",
+    "resources": [
+        {
+            "_id": "req_ea1c54d950fe4eedad02b2adeba86e17",
+            "authentication": {},
+            "body": {},
+            "created": 1586630232361,
+            "description": "",
+            "headers": [],
+            "isPrivate": false,
+            "metaSortKey": -1587669046887,
+            "method": "GET",
+            "modified": 1587669186904,
+            "name": "Get email verification ",
+            "parameters": [],
+            "parentId": "fld_11f682eecbb14862ab4ec57cce66699e",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "http://localhost:4000/authentication/email/verify?code=0a7537bf-039e-41fe-88f2-28d8c873074e",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_11f682eecbb14862ab4ec57cce66699e",
+            "created": 1586357471225,
+            "description": "",
+            "environment": {
+                "admin_token": "{% response 'body', 'req_81d62e4579aa43668950c50067676988', 'b64::JC50b2tlbg==::46b', 'always' %}",
+                "base_url": "localhost:4000",
+                "donor_token": "{% response 'body', 'req_7d27350caaa6427b98d1375df5724263', 'b64::JC50b2tlbg==::46b', 'always' %}",
+                "donor_username": "{% response 'body', 'req_7d27350caaa6427b98d1375df5724263', 'b64::JC51c2VySW5mby51c2VybmFtZQ==::46b', 'always' %}",
+                "recipient_token": "{% response 'body', 'req_fbb5a22dfc2d4bcca645ae7355bdd228', 'b64::JC50b2tlbg==::46b', 'always' %}",
+                "recipient_username": "{% response 'body', 'req_fbb5a22dfc2d4bcca645ae7355bdd228', 'b64::JC51c2VySW5mby51c2VybmFtZQ==::46b', 'always' %}"
+            },
+            "environmentPropertyOrder": {
+                "&": [
+                    "base_url",
+                    "admin_token",
+                    "donor_token",
+                    "recipient_token",
+                    "donor_username",
+                    "recipient_username"
+                ]
+            },
+            "metaSortKey": -1586357471225,
+            "modified": 1586971082545,
+            "name": "Affordable",
+            "parentId": "wrk_9b44d65f3b274c7ea8d6d1f25ab75e49",
+            "_type": "request_group"
+        },
+        {
+            "_id": "wrk_9b44d65f3b274c7ea8d6d1f25ab75e49",
+            "created": 1583366020710,
+            "description": "",
+            "modified": 1583366020710,
+            "name": "Insomnia",
+            "parentId": null,
+            "_type": "workspace"
+        },
+        {
+            "_id": "req_c9b40bc9f2b84b24946a983a21f75624",
+            "authentication": {
+                "disabled": false,
+                "password": "",
+                "type": "basic",
+                "username": "{{ recipient_token  }}"
+            },
+            "body": {},
+            "created": 1586872177316,
+            "description": "",
+            "headers": [],
+            "isPrivate": false,
+            "metaSortKey": -1587669046862,
+            "method": "GET",
+            "modified": 1587669194419,
+            "name": "Get Profile",
+            "parameters": [
+                {
+                    "description": "",
+                    "id": "pair_5cb2af4ecba544e58948103796e1b351",
+                    "name": "userId",
+                    "value": "324324"
+                }
+            ],
+            "parentId": "fld_11f682eecbb14862ab4ec57cce66699e",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/profile",
+            "_type": "request"
+        },
+        {
+            "_id": "req_81d62e4579aa43668950c50067676988",
+            "authentication": {},
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n \t\"username\": \"admin\",\n\t\"password\": \"password\"\n}"
+            },
+            "created": 1586357614886,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_83722f3534384a3a8ab12b86eef0ef9f",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1586897278581,
+            "method": "POST",
+            "modified": 1587669050651,
+            "name": "Admin Login",
+            "parameters": [],
+            "parentId": "fld_240d264106e94129bf4a7dc3d964d068",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/authentication/login",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_240d264106e94129bf4a7dc3d964d068",
+            "created": 1587669046837,
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1587669046837,
+            "modified": 1587669046837,
+            "name": "Admin",
+            "parentId": "fld_11f682eecbb14862ab4ec57cce66699e",
+            "_type": "request_group"
+        },
+        {
+            "_id": "req_dad500e7222848da874e74438a958910",
+            "authentication": {
+                "token": "{{ admin_token  }}",
+                "type": "bearer"
+            },
+            "body": {},
+            "created": 1586808531975,
+            "description": "",
+            "headers": [],
+            "isPrivate": false,
+            "metaSortKey": -1586897278531,
+            "method": "GET",
+            "modified": 1587669052786,
+            "name": "Verify an email (Admin)",
+            "parameters": [
+                {
+                    "description": "",
+                    "disabled": false,
+                    "id": "pair_5babb1ed0a564be0a0d50bd7e40db934",
+                    "name": "username",
+                    "value": "nick"
+                }
+            ],
+            "parentId": "fld_240d264106e94129bf4a7dc3d964d068",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/admin/verifyEmail",
+            "_type": "request"
+        },
+        {
+            "_id": "req_6ed7ffb3716a4e5082a757809ed638c9",
+            "authentication": {
+                "token": "{{ donor_token  }}",
+                "type": "bearer"
+            },
+            "body": {},
+            "created": 1587420161879,
+            "description": "",
+            "headers": [],
+            "isPrivate": false,
+            "metaSortKey": -1587420161879,
+            "method": "GET",
+            "modified": 1587504144449,
+            "name": "Get applicants for grant",
+            "parameters": [],
+            "parentId": "fld_6a2d42dcc0f946b08cf6aedba14dbcb9",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/grant/3/applicants",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_6a2d42dcc0f946b08cf6aedba14dbcb9",
+            "created": 1586971149387,
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1586971149387,
+            "modified": 1586971149387,
+            "name": "Donor Activities",
+            "parentId": "fld_11f682eecbb14862ab4ec57cce66699e",
+            "_type": "request_group"
+        },
+        {
+            "_id": "req_ea1c44eaf8004c578a391b4eec5882d8",
+            "authentication": {
+                "token": "{{ donor_token  }}",
+                "type": "bearer"
+            },
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"grantName\": \"COVID-19 Aid for Jake\",\n\t\"organization\": {\n\t\t\"id\": {% response 'body', 'req_35995fb4ff52487fa176da5fa7266c55', 'b64::JC5pZA==::46b', 'never' %}\n\t},\n\t\"grantAmount\": 100,\n\t\"category\": \"COVID-19\",\n\t\"description\": \"For those impacted by COVID-19\",\n\t\"eligibilityCriteria\": {\n\t\t\"organizationId\" : {% response 'body', 'req_35995fb4ff52487fa176da5fa7266c55', 'b64::JC5pZA==::46b', 'never' %},\n\t\t\"emailAddress\": \"nick@gmail.com\"\n\t}\n}"
+            },
+            "created": 1586880218174,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_330a9af8d4204ae5a9278e771dbb0de2",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1586971141504,
+            "method": "POST",
+            "modified": 1587504065420,
+            "name": "Create Grant",
+            "parameters": [],
+            "parentId": "fld_6a2d42dcc0f946b08cf6aedba14dbcb9",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/grant/",
+            "_type": "request"
+        },
+        {
+            "_id": "req_35995fb4ff52487fa176da5fa7266c55",
+            "authentication": {
+                "token": "{{ donor_token  }}",
+                "type": "bearer"
+            },
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"name\": \"Affordable COVID-19 Aid\",\n\t\"email\": \"covid19@affordhealth.org\",\n\t\"url\": \"affordhealth.org\",\n\t\"missionStatement\": \"To provide aid to those impacted by the COVID-19 pandemic\"\n}"
+            },
+            "created": 1586880412120,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_b1c0b8f4d339418282cb9eff97095a35",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1586971141454,
+            "method": "POST",
+            "modified": 1587424955621,
+            "name": "Create Organization",
+            "parameters": [],
+            "parentId": "fld_6a2d42dcc0f946b08cf6aedba14dbcb9",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/organization/",
+            "_type": "request"
+        },
+        {
+            "_id": "req_dcb4d33b71234cb9a71e18978a67fdaf",
+            "authentication": {},
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"userID\": 1,\n\t\"orgID\": 1,\n\t\"isAdmin\": 1\n}"
+            },
+            "created": 1583436678351,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_00c5c723350741cab37ba991f82de89d",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1586971141429,
+            "method": "POST",
+            "modified": 1587669170613,
+            "name": "Add User to Group",
+            "parameters": [],
+            "parentId": "fld_6a2d42dcc0f946b08cf6aedba14dbcb9",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/joinGroup/addMember",
+            "_type": "request"
+        },
+        {
+            "_id": "req_c8f035f4d6c546c1bc4f2a9538ec674b",
+            "authentication": {},
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"orgID\": {% response 'body', 'req_35995fb4ff52487fa176da5fa7266c55', 'b64::JC5pZA==::46b', 'never' %},\n\t\"userID\": {% response 'body', 'req_7d27350caaa6427b98d1375df5724263', 'b64::JC51c2VySW5mby5pZA==::46b', 'always' %},\n\t\"isAdmin\": true\n}"
+            },
+            "created": 1585599897355,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_57a2b17ee6c84f8f978570682e91037d",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1586971141404,
+            "method": "POST",
+            "modified": 1586971282632,
+            "name": "Add User To Organization",
+            "parameters": [],
+            "parentId": "fld_6a2d42dcc0f946b08cf6aedba14dbcb9",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "localhost:4000/organization/37/members",
+            "_type": "request"
+        },
+        {
+            "_id": "req_40fac73448c34872bf79e76e06421847",
+            "authentication": {},
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"username\": \"nick\",\n\t\"password\": \"P4$Sw0rd\",\n\t\"email\": \"nick@gmail.com\",\n\t\"usertype\": \"recipient\"\n}"
+            },
+            "created": 1586357507145,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_9e0918e7c46d404ab309afecaa94f26d",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1586976810055,
+            "method": "POST",
+            "modified": 1587669104207,
+            "name": "Register a recipient",
+            "parameters": [],
+            "parentId": "fld_253e65614bd34e459e4cac09b1837bb3",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/authentication",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_253e65614bd34e459e4cac09b1837bb3",
+            "created": 1586971133521,
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1586971133521,
+            "modified": 1586971133521,
+            "name": "Recipient Activities",
+            "parentId": "fld_11f682eecbb14862ab4ec57cce66699e",
+            "_type": "request_group"
+        },
+        {
+            "_id": "req_fbb5a22dfc2d4bcca645ae7355bdd228",
+            "authentication": {},
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n \t\"username\": \"recipient\",\n\t\"password\": \"password\"\n}"
+            },
+            "created": 1586970874724,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_83722f3534384a3a8ab12b86eef0ef9f",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1586976810005,
+            "method": "POST",
+            "modified": 1587669085894,
+            "name": "Recipient Login",
+            "parameters": [],
+            "parentId": "fld_253e65614bd34e459e4cac09b1837bb3",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/authentication/login",
+            "_type": "request"
+        },
+        {
+            "_id": "req_2d3274c64f834ccebcd4ab648a045c55",
+            "authentication": {
+                "token": "{{ recipient_token  }}",
+                "type": "bearer"
+            },
+            "body": {},
+            "created": 1586976809955,
+            "description": "",
+            "headers": [],
+            "isPrivate": false,
+            "metaSortKey": -1586976809955,
+            "method": "PUT",
+            "modified": 1587669097488,
+            "name": "Apply to Grant",
+            "parameters": [],
+            "parentId": "fld_253e65614bd34e459e4cac09b1837bb3",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/grant/3/apply",
+            "_type": "request"
+        },
+        {
+            "_id": "req_ef8e1f85de0645da80651992c039c547",
+            "authentication": {
+                "token": "{{ recipient_token  }}",
+                "type": "bearer"
+            },
+            "body": {},
+            "created": 1586875742256,
+            "description": "",
+            "headers": [],
+            "isPrivate": false,
+            "metaSortKey": -1586875742256,
+            "method": "GET",
+            "modified": 1587669113563,
+            "name": "Get Open/Eligible Grants",
+            "parameters": [],
+            "parentId": "fld_253e65614bd34e459e4cac09b1837bb3",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/grant/",
+            "_type": "request"
+        },
+        {
+            "_id": "req_f928384a073549d78c25714e1eefa037",
+            "authentication": {
+                "disabled": false,
+                "token": "{{ recipient_token  }}",
+                "type": "bearer"
+            },
+            "body": {
+                "mimeType": "application/json",
+                "text": "{ \n\t\"profile\": \n  {\"legalNames\": [\n    {\n      \"firstName\": \"Jake\",\n      \"lastName\": \"Taylor\",\n      \"currentName\": true\n    }\n  ],\n  \"birthDate\": \"2020-03-29\",\n  \"address\": {\n    \"street\": \"err1\",\n    \"city\": \"123123\",\n    \"state\": \"HI\",\n    \"zip\": \"42424\"\n  },\n  \"phoneNumbers\": [\n    \"1242142422\",\n    \"2424242444\"\n  ]\n}\n}"
+            },
+            "created": 1586537983384,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_629b6ebaee604c13ad77412be54466d9",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1586875742206,
+            "method": "POST",
+            "modified": 1587669115933,
+            "name": "Create Profile",
+            "parameters": [],
+            "parentId": "fld_253e65614bd34e459e4cac09b1837bb3",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/profile",
+            "_type": "request"
+        },
+        {
+            "_id": "req_e3a3becf58ce428fbc3f1f04a128e84a",
+            "authentication": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ7XCJpZFwiOjIsXCJ1c2VybmFtZVwiOlwibmlja2dcIixcInByaW1hcnlFbWFpbFwiOlwibmlja0BnbWFpbC5jb21cIixcImhhc1ZlcmlmaWVkRW1haWxcIjpmYWxzZSxcInVzZXJUeXBlXCI6XCJyZWNpcGllbnRcIn0iLCJpYXQiOjE1ODczMjcxMTIsImV4cCI6MTU4NzM1NTkxMn0.LZhFPdzgZM6yFUQeT3ztlJwlSSy1v_idDXv5HB2wibU",
+                "type": "bearer"
+            },
+            "body": {},
+            "created": 1587327974723,
+            "description": "",
+            "headers": [],
+            "isPrivate": false,
+            "metaSortKey": -1586888845400.5,
+            "method": "GET",
+            "modified": 1587669064379,
+            "name": "Check Email Verification",
+            "parameters": [],
+            "parentId": "fld_f11a4c77ff144d08bc7fddf4a8eb6958",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/authentication/get-verification",
+            "_type": "request"
+        },
+        {
+            "_id": "fld_f11a4c77ff144d08bc7fddf4a8eb6958",
+            "created": 1586897096221,
+            "description": "",
+            "environment": {},
+            "environmentPropertyOrder": null,
+            "metaSortKey": -1586897096221,
+            "modified": 1586897096221,
+            "name": "Register/Login",
+            "parentId": "fld_11f682eecbb14862ab4ec57cce66699e",
+            "_type": "request_group"
+        },
+        {
+            "_id": "req_7d27350caaa6427b98d1375df5724263",
+            "authentication": {},
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n \t\"username\": \"donor\",\n\t\"password\": \"password\"\n}"
+            },
+            "created": 1586970869282,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_83722f3534384a3a8ab12b86eef0ef9f",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1586888845350.5,
+            "method": "POST",
+            "modified": 1586970931459,
+            "name": "Donor Login",
+            "parameters": [],
+            "parentId": "fld_f11a4c77ff144d08bc7fddf4a8eb6958",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/authentication/login",
+            "_type": "request"
+        },
+        {
+            "_id": "req_dd4433d53e6e4e6ca3bdb1310d77ef6a",
+            "authentication": {},
+            "body": {
+                "mimeType": "application/json",
+                "text": "{\n\t\"username\": \"donor\",\n\t\"password\": \"password\",\n\t\"email\": \"{% uuid 'v4' %}@affordhealth.org\",\n\t\"usertype\": \"donor\"\n}"
+            },
+            "created": 1586970657826,
+            "description": "",
+            "headers": [
+                {
+                    "id": "pair_198d56a6b3044f19a61529e2feb46cfd",
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "isPrivate": false,
+            "metaSortKey": -1586627392838,
+            "method": "POST",
+            "modified": 1586971464412,
+            "name": "Register a donor",
+            "parameters": [],
+            "parentId": "fld_f11a4c77ff144d08bc7fddf4a8eb6958",
+            "settingDisableRenderRequestBody": false,
+            "settingEncodeUrl": true,
+            "settingFollowRedirects": "global",
+            "settingRebuildPath": true,
+            "settingSendCookies": true,
+            "settingStoreCookies": true,
+            "url": "{{ base_url  }}/authentication",
+            "_type": "request"
+        },
+        {
+            "_id": "env_8bb1c1f22df2ba0583545a53428f331d62b7701b",
+            "color": null,
+            "created": 1583366020758,
+            "data": {},
+            "dataPropertyOrder": null,
+            "isPrivate": false,
+            "metaSortKey": 1583366020758,
+            "modified": 1583366020758,
+            "name": "Base Environment",
+            "parentId": "wrk_9b44d65f3b274c7ea8d6d1f25ab75e49",
+            "_type": "environment"
+        },
+        {
+            "_id": "jar_8bb1c1f22df2ba0583545a53428f331d62b7701b",
+            "cookies": [
+                {
+                    "creation": "2020-04-08T15:57:48.224Z",
+                    "domain": "repo-prod.prod.sagebase.org",
+                    "hostOnly": true,
+                    "id": "3333454870887227",
+                    "key": "sessionID",
+                    "lastAccessed": "2020-04-08T15:57:48.224Z",
+                    "path": "/repo/v1/entity/syn19166591",
+                    "pathIsDefault": true,
+                    "value": "97ac4d4e-cc9b-49eb-9441-52221691565e"
+                },
+                {
+                    "creation": "2020-04-08T15:57:56.329Z",
+                    "domain": "repo-prod.prod.sagebase.org",
+                    "hostOnly": true,
+                    "id": "6732967618196466",
+                    "key": "sessionID",
+                    "lastAccessed": "2020-04-08T15:57:56.329Z",
+                    "path": "/repo/v1/entity/syn19164491",
+                    "pathIsDefault": true,
+                    "value": "40c77039-368d-4352-be5f-ee518d79b2da"
+                },
+                {
+                    "creation": "2020-04-08T16:01:21.801Z",
+                    "domain": "localhost",
+                    "expires": "2020-04-08T16:01:50.000Z",
+                    "hostOnly": true,
+                    "httpOnly": true,
+                    "id": "9717941718240164",
+                    "key": "sessionToken",
+                    "lastAccessed": "2020-04-08T16:01:21.801Z",
+                    "maxAge": 28,
+                    "path": "/",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE2LCJpYXQiOjE1ODYzNjE2ODEsImV4cCI6MTU4NjM5MDQ4MX0.G3u_6lL8dkq3eOdkUGXlSNU1RuE-uyGKip1ymtSVhTM"
+                },
+                {
+                    "creation": "2020-04-10T19:50:43.027Z",
+                    "domain": "localhost",
+                    "expires": "2020-04-21T21:22:56.000Z",
+                    "hostOnly": true,
+                    "id": "7166032111092171",
+                    "key": "affordable.session.token",
+                    "lastAccessed": "2020-04-21T21:22:27.281Z",
+                    "maxAge": 28,
+                    "path": "/",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ7XCJpZFwiOjQsXCJ1c2VybmFtZVwiOlwiZG9ub3JcIixcInByaW1hcnlFbWFpbFwiOlwiY2E5MDA0NGMtZDQwNC00YmFjLWE2MzItZjgxMDc4ZDNkZWI3QGFmZm9yZGhlYWx0aC5vcmdcIixcImhhc1ZlcmlmaWVkRW1haWxcIjp0cnVlLFwidXNlclR5cGVcIjpcImRvbm9yXCJ9IiwiaWF0IjoxNTg3NTA0MTQ3LCJleHAiOjE1ODc1MzI5NDd9.ZkYmyKsA0brKOx-Y_iRzjVl35fhjf6mVSCKb3qLK4Pc"
+                },
+                {
+                    "creation": "2020-04-18T23:09:24.136Z",
+                    "domain": "localhost",
+                    "expires": "2020-04-19T00:35:56.000Z",
+                    "extensions": [
+                        "SameSite=Strict"
+                    ],
+                    "hostOnly": true,
+                    "httpOnly": true,
+                    "id": "7220797551599969",
+                    "key": "affordable.access.token",
+                    "lastAccessed": "2020-04-19T00:35:28.111Z",
+                    "maxAge": 28,
+                    "path": "/",
+                    "secure": true,
+                    "value": "undefined"
+                },
+                {
+                    "creation": "2020-04-19T00:36:00.297Z",
+                    "domain": "localhost",
+                    "expires": "2020-04-19T00:57:55.000Z",
+                    "hostOnly": true,
+                    "httpOnly": true,
+                    "id": "7338151693511177",
+                    "key": "affordable.refresh.token",
+                    "lastAccessed": "2020-04-19T00:57:26.214Z",
+                    "maxAge": 28,
+                    "path": "/",
+                    "secure": true,
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ7XCJpZFwiOjMsXCJ1c2VybmFtZVwiOlwicmVjaXBpZW50XCIsXCJwcmltYXJ5RW1haWxcIjpcImQwOThjNTU4LWZmZGMtNDYyNC04MTdiLTE2NDdhNzBlM2ZhYkBhZmZvcmRoZWFsdGgub3JnXCIsXCJoYXNWZXJpZmllZEVtYWlsXCI6ZmFsc2UsXCJ1c2VyVHlwZVwiOlwicmVjaXBpZW50XCJ9IiwidHlwZSI6InJlZnJlc2giLCJpYXQiOjE1ODcyNTc4NDYsImV4cCI6MTU4NzM0NDI0Nn0.MMedFo0kccoxi1yC9UJuMfRwzHHJdBPtRHmjDY-tL8Q"
+                }
+            ],
+            "created": 1583366020761,
+            "modified": 1587504147281,
+            "name": "Default Jar",
+            "parentId": "wrk_9b44d65f3b274c7ea8d6d1f25ab75e49",
+            "_type": "cookie_jar"
+        }
+    ]
+}

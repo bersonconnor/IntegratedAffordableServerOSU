@@ -1,0 +1,29 @@
+@mixin text-input-width() {
+  width: 26rem;
+}
+
+.login {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__username-text-input {
+    @include text-input-width();
+  }
+
+  &__password-text-input {
+    @include text-input-width();
+    margin-top: 1rem;
+  }
+
+  &__login-button {
+    margin-top: 1.5rem;
+  }
+
+  &__forgot-link {
+    margin-top: 2.5rem;
+  }
+
+}

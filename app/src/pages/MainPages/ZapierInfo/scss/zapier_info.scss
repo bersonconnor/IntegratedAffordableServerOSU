@@ -1,0 +1,92 @@
+.zapier{
+//structures the div tags
+&__container{
+//flex
+display: flex;
+flex-direction: column;
+
+}
+//resizes the images on the webpage
+&__image{
+//width
+//height
+width: 75%;
+height: .1%;
+}
+}
+
+.infoPanel {
+  border-radius: 6px;
+  background-color: #cfeaf3;
+  padding: 20px 30px;
+  margin: 20px 0;
+}
+
+.infoPanel div {
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.infoPanel p {
+  margin: 0;
+}
+
+.integrateHeader {
+  text-align: center;
+  font-weight: 600;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.integrateCard {
+  background-color: #FFF;
+  border: 0;
+  margin: 10px;
+  padding: 20px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  height: 200px;
+}
+
+.integrateCard:hover {
+  background-color: #F5F5F5;
+  cursor: pointer;
+}
+
+.integrateCard h2 {
+  font-weight: 900;
+  font-size: 22px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.integrateCard p {
+  text-align: left;
+  font-size: 16px;
+}
+
+.integrateAPI h2 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.inlineCode {
+  background-color: #fdeded;
+  color: darkred;
+  border: 1px solid #f1b8b8;
+  font-family: "Courier", monospace !important;
+  font-size: 12px;
+  padding: 0px 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.endpoint {
+  background-color: #FFF;
+  padding: 20px;
+  border-radius: 6px;
+  margin: 10px 0 30px 0;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}

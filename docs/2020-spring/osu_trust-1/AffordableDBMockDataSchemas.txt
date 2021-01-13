@@ -1,0 +1,17 @@
+Mockaroo Links for Affordable Mock Data
+
+Schemas
+
+AuthenticationInformation		https://mockaroo.com/50ed62e0
+Emails					https://mockaroo.com/00a58f10
+Finances				https://mockaroo.com/2a0a4b90
+Healthcare				https://mockaroo.com/ef0ff050
+IdentificationInformation		https://mockaroo.com/96a16820
+InformationProvider			https://mockaroo.com/ac984890
+Insurance				https://mockaroo.com/5d989680
+LegalName				https://mockaroo.com/af9fba90
+MarriageInformation			https://mockaroo.com/bc81c4e0
+PhoneNumbers				https://mockaroo.com/da13d250
+SexAndEthnicity				https://mockaroo.com/0c6df060
+UserAddress				https://mockaroo.com/c2905530
+

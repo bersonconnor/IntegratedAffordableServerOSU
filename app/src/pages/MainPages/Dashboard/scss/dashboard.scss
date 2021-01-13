@@ -1,0 +1,102 @@
+.chart {
+    grid-area: chart; 
+    background-color: white;
+}
+
+.grid-container2 {
+    display: grid;
+    grid-template-areas:
+        'head head head head'
+        'chart chart chart chart';
+    padding: 10px;
+}
+
+.grid-container2 > div {
+    padding: 20px 20px;
+}
+
+.head {
+    grid-area: head;
+    background-color: rgb(153, 153, 153);
+    height: 8vh;
+}
+
+.table1 {
+    width: 100%;
+}
+
+.greenbox {
+    background-color: green;
+    height: 20px;
+    width: 20px;
+}
+
+.yellowbox {
+    background-color: yellow;
+    height: 20px;
+    width: 20px;
+}
+
+.redbox {
+    background-color: red;
+    height: 20px;
+    width: 20px;
+}
+
+.bluebox {
+    background-color: lightblue;
+    height: 20px;
+    width: 20px;
+}
+
+.td1 {
+  border-style: solid;
+  border-color: black;
+  padding: 5px;
+}
+
+.td1-green {
+  border-style: solid;
+  border-color: black;
+  background-color: green;
+  width: 60px;
+  height: 40px;
+}
+
+.td1-white {
+  border-style: solid;
+  border-color: black;
+  background-color: white;
+  width: 60px;
+  height: 40px;
+}
+
+.td1-yellow {
+  border-style: solid;
+  border-color: black;
+  background-color: yellow;
+  width: 60px;
+  height: 40px;
+}
+
+.td1-red {
+  border-style: solid;
+  border-color: black;
+  background-color: red;
+  width: 60px;
+  height: 40px;
+}
+
+.td1-blue {
+  border-style: solid;
+  border-color: black;
+  background-color: lightblue;
+  width: 60px;
+  height: 40px;
+}
+
+.dash {
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+}

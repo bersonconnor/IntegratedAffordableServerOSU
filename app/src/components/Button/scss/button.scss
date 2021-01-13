@@ -1,0 +1,60 @@
+@import "../../../styles/variables";
+$tertiary-clicked-color: #B04F4F;
+
+.button {
+  padding: 0.875rem 2rem;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+
+  &:hover, &:focus {
+    font-weight: bold;
+    outline: none;
+  }
+
+  &:active { //Must come after :hover style due to specificity rules
+    outline: none;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &--primary {
+    background: $rose-gold;
+    color: $eerie-black;
+
+    &:hover, &:focus {
+      background: rgba($rose-gold, 0.75);
+    }
+
+    &:active { //Must come after :hover style due to specificity rules
+      background: rgba($rose-gold, 0.5);
+    }
+  }
+
+  &--secondary {
+    background: none;
+    border: 0.125rem solid $rose-gold;
+    color: $rose-gold;
+    
+    &:hover, &:focus {
+      background: rgba($rose-gold, 0.25);
+    }
+
+    &:active { //Must come after :hover style due to specificity rules
+      background: rgba($rose-gold, 0.1);
+    }
+  }
+
+  &--tertiary {
+    background: none;
+    color: $rose-gold;
+
+    &:active { //Must come after :hover style due to specificity rules
+      color: $tertiary-clicked-color;
+    }
+  }
+}
